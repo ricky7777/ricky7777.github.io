@@ -12,9 +12,7 @@ h1{text-align:center;color:#FFD700;font-size:1.8em;margin-bottom:6px;padding-top
 
 /* Date filter */
 .date-filter{background:#111827;border-radius:10px;padding:12px 14px;margin-bottom:24px;position:sticky;top:0;z-index:100;border:1px solid #1f2937;box-shadow:0 4px 20px rgba(0,0,0,.5)}
-.filter-label{font-size:.8em;color:#9ca3af;margin-bottom:8px}
-.date-buttons{display:flex;flex-wrap:wrap;gap:5px}
-.dbtn{background:#1e2a3a;border:1px solid #2d3e52;border-radius:6px;color:#9ca3af;cursor:pointer;font-size:.78em;padding:5px 9px;text-align:center;min-width:46px;line-height:1.3;transition:all .15s;font-family:inherit}
+.dbtn{background:#1e2a3a;border:1px solid #2d3e52;border-radius:6px;color:#9ca3af;cursor:pointer;font-size:.78em;padding:5px 9px;text-align:center;min-width:46px;line-height:1.3;transition:background .15s,color .15s,border-color .15s;font-family:inherit}
 .dbtn span{display:block;font-weight:600}
 .dbtn small{display:block;font-size:.8em;opacity:.7}
 .dbtn:hover{background:#2a3a4a;color:#ddd;border-color:#4b6580}
@@ -22,6 +20,7 @@ h1{text-align:center;color:#FFD700;font-size:1.8em;margin-bottom:6px;padding-top
 .dbtn.active small{opacity:.9}
 
 /* Stage / Group */
+.stage-section{content-visibility:auto;contain-intrinsic-size:auto 400px}
 .stage{background:#0f2a1a;border-left:4px solid #00cc55;padding:8px 16px;margin:24px 0 10px;font-size:1.1em;font-weight:700;color:#00cc55;border-radius:0 4px 4px 0}
 .group{background:#111827;border-left:4px solid #3b82f6;padding:7px 14px;margin:16px 0 8px;font-size:.95em;font-weight:600;color:#60a5fa;border-radius:0 4px 4px 0}
 .grp-teams{font-weight:400;color:#6b7280;font-size:.82em}
@@ -59,7 +58,7 @@ h1{text-align:center;color:#FFD700;font-size:1.8em;margin-bottom:6px;padding-top
 .flag-select:focus{border-color:#3b82f6}
 .flag-select option,.flag-select optgroup{background:#1e2533}
 .stage-tabs{display:flex;flex-wrap:wrap;gap:4px}
-.stab{background:#1e2a3a;border:1px solid #2d3e52;border-radius:6px;color:#9ca3af;cursor:pointer;font-size:.75em;padding:4px 9px;line-height:1.4;transition:all .15s;font-family:inherit;white-space:nowrap}
+.stab{background:#1e2a3a;border:1px solid #2d3e52;border-radius:6px;color:#9ca3af;cursor:pointer;font-size:.75em;padding:4px 9px;line-height:1.4;transition:background .15s,color .15s,border-color .15s;font-family:inherit;white-space:nowrap}
 .stab:hover{background:#2a3a4a;color:#ddd;border-color:#4b6580}
 .stab.active{background:#1d4ed8;border-color:#3b82f6;color:#fff}
 .date-sub-row{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;padding-top:7px;border-top:1px solid #1f2937}
@@ -1377,26 +1376,58 @@ h1{text-align:center;color:#FFD700;font-size:1.8em;margin-bottom:6px;padding-top
 var _activeDate = 'all';
 var _activeTeam = 'all';
 
+// ── 頁面載入時一次性快取，避免每次篩選重複 querySelectorAll ──
+var _allMatches        = Array.from(document.querySelectorAll('.match'));
+var _allGroupSections  = Array.from(document.querySelectorAll('.group-section'));
+var _allStageSections  = Array.from(document.querySelectorAll('.stage-section'));
+
+// 每個 group/stage-section 對應哪些 match（預先建立，避免每次向下 query）
+var _groupMatchMap = new Map();
+_allGroupSections.forEach(function(gs) {
+  _groupMatchMap.set(gs, Array.from(gs.querySelectorAll('.match')));
+});
+var _stageMatchMap = new Map();
+_allStageSections.forEach(function(ss) {
+  _stageMatchMap.set(ss, Array.from(ss.querySelectorAll('.match')));
+});
+
+// 隊名 → [matchEl] 索引，過濾時 O(1) 查找，不再逐場 DOM query
+var _teamIndex = {};
+_allMatches.forEach(function(m) {
+  m.querySelectorAll('.tn').forEach(function(tn) {
+    var name = tn.firstChild && tn.firstChild.textContent.trim();
+    if (name && name.indexOf('組') === -1) { // 排除淘汰賽佔位文字如「A組首名」
+      if (!_teamIndex[name]) _teamIndex[name] = [];
+      _teamIndex[name].push(m);
+    }
+  });
+});
+
 function _applyFilters() {
-  document.querySelectorAll('.match').forEach(function(m) {
+  var teamSet = _activeTeam !== 'all' ? new Set(_teamIndex[_activeTeam] || []) : null;
+
+  _allMatches.forEach(function(m) {
     var okDate = (_activeDate === 'all') || (m.dataset.date === _activeDate);
-    var okTeam = (_activeTeam === 'all') || Array.from(m.querySelectorAll('.tn')).some(function(tn) {
-      return tn.firstChild && tn.firstChild.textContent.trim() === _activeTeam;
-    });
+    var okTeam = !teamSet || teamSet.has(m);
     m.style.display = (okDate && okTeam) ? 'flex' : 'none';
   });
-  document.querySelectorAll('.group-section').forEach(function(gs) {
-    var has = Array.from(gs.querySelectorAll('.match')).some(function(m) { return m.style.display !== 'none'; });
+
+  _allGroupSections.forEach(function(gs) {
+    var matches = _groupMatchMap.get(gs);
+    var has = matches.some(function(m) { return m.style.display !== 'none'; });
     gs.style.display = has ? '' : 'none';
   });
-  document.querySelectorAll('.stage-section').forEach(function(ss) {
-    var has = Array.from(ss.querySelectorAll('.match')).some(function(m) { return m.style.display !== 'none'; });
+
+  _allStageSections.forEach(function(ss) {
+    var matches = _stageMatchMap.get(ss);
+    var has = matches.some(function(m) { return m.style.display !== 'none'; });
     ss.style.display = has ? '' : 'none';
   });
 }
 
 function fd(date, btn) {
-  document.querySelectorAll('.dbtn').forEach(function(b) { b.classList.remove('active'); });
+  var subRow = document.getElementById('date-sub-row');
+  if (subRow) subRow.querySelectorAll('.dbtn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
   _activeDate = date;
   _applyFilters();
