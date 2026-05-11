@@ -52,6 +52,18 @@ h1{text-align:center;color:#FFD700;font-size:1.8em;margin-bottom:6px;padding-top
 
 @media(max-width:680px){.venue{display:none}.match{flex-wrap:wrap}.team{min-width:100px}}
 
+/* ── Filter panel ── */
+.filter-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.filter-row-lbl{font-size:.73em;color:#6b7280;white-space:nowrap;min-width:28px}
+.flag-select{background:#1a2332;border:1px solid #2d3e52;border-radius:6px;color:#d1d5db;font-size:.83em;padding:5px 26px 5px 9px;cursor:pointer;outline:none;font-family:inherit;flex:1;max-width:270px;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236b7280'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center}
+.flag-select:focus{border-color:#3b82f6}
+.flag-select option,.flag-select optgroup{background:#1e2533}
+.stage-tabs{display:flex;flex-wrap:wrap;gap:4px}
+.stab{background:#1e2a3a;border:1px solid #2d3e52;border-radius:6px;color:#9ca3af;cursor:pointer;font-size:.75em;padding:4px 9px;line-height:1.4;transition:all .15s;font-family:inherit;white-space:nowrap}
+.stab:hover{background:#2a3a4a;color:#ddd;border-color:#4b6580}
+.stab.active{background:#1d4ed8;border-color:#3b82f6;color:#fff}
+.date-sub-row{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;padding-top:7px;border-top:1px solid #1f2937}
+
 </style>
 </head>
 <body>
@@ -61,44 +73,100 @@ h1{text-align:center;color:#FFD700;font-size:1.8em;margin-bottom:6px;padding-top
 
 <!-- ===== DATE FILTER ===== -->
 <div class="date-filter">
-  <div class="filter-label">🗓 選擇比賽日期（NZ 時間）</div>
-  <div class="date-buttons">
-    <button class="dbtn active" onclick="fd('all',this)"><span>全部</span><small>All</small></button>
-    <button class="dbtn" onclick="fd('2026-06-12',this)"><span>6/12</span><small>五</small></button>
-    <button class="dbtn" onclick="fd('2026-06-13',this)"><span>6/13</span><small>六</small></button>
-    <button class="dbtn" onclick="fd('2026-06-14',this)"><span>6/14</span><small>日</small></button>
-    <button class="dbtn" onclick="fd('2026-06-15',this)"><span>6/15</span><small>一</small></button>
-    <button class="dbtn" onclick="fd('2026-06-16',this)"><span>6/16</span><small>二</small></button>
-    <button class="dbtn" onclick="fd('2026-06-17',this)"><span>6/17</span><small>三</small></button>
-    <button class="dbtn" onclick="fd('2026-06-18',this)"><span>6/18</span><small>四</small></button>
-    <button class="dbtn" onclick="fd('2026-06-19',this)"><span>6/19</span><small>五</small></button>
-    <button class="dbtn" onclick="fd('2026-06-20',this)"><span>6/20</span><small>六</small></button>
-    <button class="dbtn" onclick="fd('2026-06-21',this)"><span>6/21</span><small>日</small></button>
-    <button class="dbtn" onclick="fd('2026-06-22',this)"><span>6/22</span><small>一</small></button>
-    <button class="dbtn" onclick="fd('2026-06-23',this)"><span>6/23</span><small>二</small></button>
-    <button class="dbtn" onclick="fd('2026-06-24',this)"><span>6/24</span><small>三</small></button>
-    <button class="dbtn" onclick="fd('2026-06-25',this)"><span>6/25</span><small>四</small></button>
-    <button class="dbtn" onclick="fd('2026-06-26',this)"><span>6/26</span><small>五</small></button>
-    <button class="dbtn" onclick="fd('2026-06-27',this)"><span>6/27</span><small>六</small></button>
-    <button class="dbtn" onclick="fd('2026-06-28',this)"><span>6/28</span><small>日</small></button>
-    <button class="dbtn" onclick="fd('2026-06-29',this)"><span>6/29</span><small>一</small></button>
-    <button class="dbtn" onclick="fd('2026-06-30',this)"><span>6/30</span><small>二</small></button>
-    <button class="dbtn" onclick="fd('2026-07-01',this)"><span>7/1</span><small>三</small></button>
-    <button class="dbtn" onclick="fd('2026-07-02',this)"><span>7/2</span><small>四</small></button>
-    <button class="dbtn" onclick="fd('2026-07-03',this)"><span>7/3</span><small>五</small></button>
-    <button class="dbtn" onclick="fd('2026-07-04',this)"><span>7/4</span><small>六</small></button>
-    <button class="dbtn" onclick="fd('2026-07-05',this)"><span>7/5</span><small>日</small></button>
-    <button class="dbtn" onclick="fd('2026-07-06',this)"><span>7/6</span><small>一</small></button>
-    <button class="dbtn" onclick="fd('2026-07-07',this)"><span>7/7</span><small>二</small></button>
-    <button class="dbtn" onclick="fd('2026-07-08',this)"><span>7/8</span><small>三</small></button>
-    <button class="dbtn" onclick="fd('2026-07-10',this)"><span>7/10</span><small>五</small></button>
-    <button class="dbtn" onclick="fd('2026-07-11',this)"><span>7/11</span><small>六</small></button>
-    <button class="dbtn" onclick="fd('2026-07-12',this)"><span>7/12</span><small>日</small></button>
-    <button class="dbtn" onclick="fd('2026-07-15',this)"><span>7/15</span><small>三</small></button>
-    <button class="dbtn" onclick="fd('2026-07-16',this)"><span>7/16</span><small>四</small></button>
-    <button class="dbtn" onclick="fd('2026-07-19',this)"><span>7/19</span><small>日</small></button>
-    <button class="dbtn" onclick="fd('2026-07-20',this)"><span>7/20</span><small>一</small></button>
+  <!-- Flag dropdown -->
+  <div class="filter-row">
+    <span class="filter-row-lbl">隊伍</span>
+    <select class="flag-select" id="flag-sel" onchange="ft(this.value)">
+      <option value="all">🏴 全部隊伍</option>
+      <optgroup label="A 組">
+        <option value="墨西哥">🇲🇽 墨西哥</option>
+        <option value="南非">🇿🇦 南非</option>
+        <option value="韓國">🇰🇷 韓國</option>
+        <option value="捷克">🇨🇿 捷克</option>
+      </optgroup>
+      <optgroup label="B 組">
+        <option value="加拿大">🇨🇦 加拿大</option>
+        <option value="波黑">🇧🇦 波黑</option>
+        <option value="卡塔爾">🇶🇦 卡塔爾</option>
+        <option value="瑞士">🇨🇭 瑞士</option>
+      </optgroup>
+      <optgroup label="C 組">
+        <option value="巴西">🇧🇷 巴西</option>
+        <option value="摩洛哥">🇲🇦 摩洛哥</option>
+        <option value="海地">🇭🇹 海地</option>
+        <option value="蘇格蘭">🏴󠁧󠁢󠁳󠁣󠁴󠁿 蘇格蘭</option>
+      </optgroup>
+      <optgroup label="D 組">
+        <option value="美國">🇺🇸 美國</option>
+        <option value="巴拉圭">🇵🇾 巴拉圭</option>
+        <option value="澳大利亞">🇦🇺 澳大利亞</option>
+        <option value="土耳其">🇹🇷 土耳其</option>
+      </optgroup>
+      <optgroup label="E 組">
+        <option value="德國">🇩🇪 德國</option>
+        <option value="庫拉索">🇨🇼 庫拉索</option>
+        <option value="科特迪瓦">🇨🇮 科特迪瓦</option>
+        <option value="厄瓜多爾">🇪🇨 厄瓜多爾</option>
+      </optgroup>
+      <optgroup label="F 組">
+        <option value="荷蘭">🇳🇱 荷蘭</option>
+        <option value="日本">🇯🇵 日本</option>
+        <option value="瑞典">🇸🇪 瑞典</option>
+        <option value="突尼西亞">🇹🇳 突尼西亞</option>
+      </optgroup>
+      <optgroup label="G 組">
+        <option value="比利時">🇧🇪 比利時</option>
+        <option value="埃及">🇪🇬 埃及</option>
+        <option value="伊朗">🇮🇷 伊朗</option>
+        <option value="新西蘭">🇳🇿 新西蘭</option>
+      </optgroup>
+      <optgroup label="H 組">
+        <option value="西班牙">🇪🇸 西班牙</option>
+        <option value="佛得角">🇨🇻 佛得角</option>
+        <option value="沙烏地阿拉伯">🇸🇦 沙烏地阿拉伯</option>
+        <option value="烏拉圭">🇺🇾 烏拉圭</option>
+      </optgroup>
+      <optgroup label="I 組">
+        <option value="法國">🇫🇷 法國</option>
+        <option value="塞內加爾">🇸🇳 塞內加爾</option>
+        <option value="伊拉克">🇮🇶 伊拉克</option>
+        <option value="挪威">🇳🇴 挪威</option>
+      </optgroup>
+      <optgroup label="J 組">
+        <option value="阿根廷">🇦🇷 阿根廷</option>
+        <option value="阿爾及利亞">🇩🇿 阿爾及利亞</option>
+        <option value="奧地利">🇦🇹 奧地利</option>
+        <option value="約旦">🇯🇴 約旦</option>
+      </optgroup>
+      <optgroup label="K 組">
+        <option value="葡萄牙">🇵🇹 葡萄牙</option>
+        <option value="剛果DR">🇨🇩 剛果DR</option>
+        <option value="烏茲別克斯坦">🇺🇿 烏茲別克斯坦</option>
+        <option value="哥倫比亞">🇨🇴 哥倫比亞</option>
+      </optgroup>
+      <optgroup label="L 組">
+        <option value="英格蘭">🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格蘭</option>
+        <option value="克羅地亞">🇭🇷 克羅地亞</option>
+        <option value="加納">🇬🇭 加納</option>
+        <option value="巴拿馬">🇵🇦 巴拿馬</option>
+      </optgroup>
+    </select>
   </div>
+  <!-- Stage tabs (Level 1) -->
+  <div class="filter-row">
+    <span class="filter-row-lbl">階段</span>
+    <div class="stage-tabs">
+      <button class="stab active" data-stage="all" onclick="selectStage(this)">全部</button>
+      <button class="stab" data-stage="group" onclick="selectStage(this)">⚽ 小組賽</button>
+      <button class="stab" data-stage="r32" onclick="selectStage(this)">🥊 32強</button>
+      <button class="stab" data-stage="r16" onclick="selectStage(this)">16強</button>
+      <button class="stab" data-stage="qf" onclick="selectStage(this)">8強</button>
+      <button class="stab" data-stage="sf" onclick="selectStage(this)">4強</button>
+      <button class="stab" data-stage="final" onclick="selectStage(this)">🏆 冠亞軍</button>
+    </div>
+  </div>
+  <!-- Date buttons (Level 2, dynamically populated) -->
+  <div class="date-sub-row" id="date-sub-row" style="display:none"></div>
 </div>
 
 <!-- ===== GROUP STAGE ===== -->
@@ -1262,11 +1330,9 @@ h1{text-align:center;color:#FFD700;font-size:1.8em;margin-bottom:6px;padding-top
 // 在每場比賽時間欄加入台灣時間（NZST UTC+12 → CST UTC+8，差 -4 小時）
 (function() {
   var days = ['日','一','二','三','四','五','六'];
-  // 月份對應天數（2026非閏年）
   var monthDays = [0,31,28,31,30,31,30,31,31,30,31,30,31];
 
   function prevDay(dateStr) {
-    // dateStr format: "2026-06-12"
     var p = dateStr.split('-');
     var y = parseInt(p[0]), mo = parseInt(p[1]), d = parseInt(p[2]);
     d--;
@@ -1280,7 +1346,7 @@ h1{text-align:center;color:#FFD700;font-size:1.8em;margin-bottom:6px;padding-top
     var dtT = m.querySelector('.dt-t');
     if (!dtD || !dtT) return;
 
-    var nzStr = dtT.textContent.trim();          // e.g. "07:00"
+    var nzStr = dtT.textContent.trim();
     var nzH = parseInt(nzStr.split(':')[0]);
     var nzMin = nzStr.split(':')[1];
 
@@ -1293,10 +1359,8 @@ h1{text-align:center;color:#FFD700;font-size:1.8em;margin-bottom:6px;padding-top
 
     var twStr = String(twH).padStart(2, '0') + ':' + nzMin;
 
-    // 更新 NZ 時間標籤
     dtT.innerHTML = '🇳🇿&nbsp;' + nzStr;
 
-    // 插入台灣時間
     var twSpan = document.createElement('span');
     twSpan.className = 'dt-tw';
     if (prevDayInfo) {
@@ -1309,31 +1373,73 @@ h1{text-align:center;color:#FFD700;font-size:1.8em;margin-bottom:6px;padding-top
   });
 })();
 
+// Active filter state
+var _activeDate = 'all';
+var _activeTeam = 'all';
+
+function _applyFilters() {
+  document.querySelectorAll('.match').forEach(function(m) {
+    var okDate = (_activeDate === 'all') || (m.dataset.date === _activeDate);
+    var okTeam = (_activeTeam === 'all') || Array.from(m.querySelectorAll('.tn')).some(function(tn) {
+      return tn.firstChild && tn.firstChild.textContent.trim() === _activeTeam;
+    });
+    m.style.display = (okDate && okTeam) ? 'flex' : 'none';
+  });
+  document.querySelectorAll('.group-section').forEach(function(gs) {
+    var has = Array.from(gs.querySelectorAll('.match')).some(function(m) { return m.style.display !== 'none'; });
+    gs.style.display = has ? '' : 'none';
+  });
+  document.querySelectorAll('.stage-section').forEach(function(ss) {
+    var has = Array.from(ss.querySelectorAll('.match')).some(function(m) { return m.style.display !== 'none'; });
+    ss.style.display = has ? '' : 'none';
+  });
+}
+
 function fd(date, btn) {
-  document.querySelectorAll('.dbtn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.dbtn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  _activeDate = date;
+  _applyFilters();
+}
+
+function ft(team) {
+  _activeTeam = team;
+  _applyFilters();
+}
+
+var _stageDates = {
+  group: [['2026-06-12','6/12','五'],['2026-06-13','6/13','六'],['2026-06-14','6/14','日'],['2026-06-15','6/15','一'],['2026-06-16','6/16','二'],['2026-06-17','6/17','三'],['2026-06-18','6/18','四'],['2026-06-19','6/19','五'],['2026-06-20','6/20','六'],['2026-06-21','6/21','日'],['2026-06-22','6/22','一'],['2026-06-23','6/23','二'],['2026-06-24','6/24','三'],['2026-06-25','6/25','四'],['2026-06-26','6/26','五'],['2026-06-27','6/27','六'],['2026-06-28','6/28','日']],
+  r32:   [['2026-06-29','6/29','一'],['2026-06-30','6/30','二'],['2026-07-01','7/1','三'],['2026-07-02','7/2','四'],['2026-07-03','7/3','五'],['2026-07-04','7/4','六']],
+  r16:   [['2026-07-05','7/5','日'],['2026-07-06','7/6','一'],['2026-07-07','7/7','二'],['2026-07-08','7/8','三']],
+  qf:    [['2026-07-10','7/10','五'],['2026-07-11','7/11','六'],['2026-07-12','7/12','日']],
+  sf:    [['2026-07-15','7/15','三'],['2026-07-16','7/16','四']],
+  final: [['2026-07-19','7/19','日'],['2026-07-20','7/20','一']]
+};
+
+function selectStage(btn) {
+  document.querySelectorAll('.stab').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
 
-  var matches = document.querySelectorAll('.match');
+  var stage = btn.dataset.stage;
+  var subRow = document.getElementById('date-sub-row');
 
-  if (date === 'all') {
-    matches.forEach(function(m){ m.style.display='flex'; });
-    document.querySelectorAll('.group-section,.stage-section').forEach(function(el){ el.style.display=''; });
+  if (stage === 'all') {
+    subRow.style.display = 'none';
+    subRow.innerHTML = '';
+    _activeDate = 'all';
+    _applyFilters();
     return;
   }
 
-  matches.forEach(function(m){
-    m.style.display = (m.dataset.date === date) ? 'flex' : 'none';
+  var dates = _stageDates[stage];
+  var html = '<button class="dbtn active" onclick="fd(\'all\',this)"><span>全部</span></button>';
+  dates.forEach(function(d) {
+    html += '<button class="dbtn" onclick="fd(\'' + d[0] + '\',this)"><span>' + d[1] + '</span><small>' + d[2] + '</small></button>';
   });
-
-  document.querySelectorAll('.group-section').forEach(function(gs){
-    var has = Array.from(gs.querySelectorAll('.match')).some(function(m){ return m.style.display !== 'none'; });
-    gs.style.display = has ? '' : 'none';
-  });
-
-  document.querySelectorAll('.stage-section').forEach(function(ss){
-    var has = Array.from(ss.querySelectorAll('.match')).some(function(m){ return m.style.display !== 'none'; });
-    ss.style.display = has ? '' : 'none';
-  });
+  subRow.innerHTML = html;
+  subRow.style.display = 'flex';
+  _activeDate = 'all';
+  _applyFilters();
 }
 </script>
 </body>
