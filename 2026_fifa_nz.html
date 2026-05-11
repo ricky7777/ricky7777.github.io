@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 FIFA 世界盃 — 紐西蘭時間賽程</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0d0d1a;color:#ddd;padding:16px}
+h1{text-align:center;color:#FFD700;font-size:1.8em;margin-bottom:6px;padding-top:10px}
+.tz-note{text-align:center;color:#888;font-size:.85em;margin-bottom:16px}
+
+/* Date filter */
+.date-filter{background:#111827;border-radius:10px;padding:12px 14px;margin-bottom:24px;position:sticky;top:0;z-index:100;border:1px solid #1f2937;box-shadow:0 4px 20px rgba(0,0,0,.5)}
+.filter-label{font-size:.8em;color:#9ca3af;margin-bottom:8px}
+.date-buttons{display:flex;flex-wrap:wrap;gap:5px}
+.dbtn{background:#1e2a3a;border:1px solid #2d3e52;border-radius:6px;color:#9ca3af;cursor:pointer;font-size:.78em;padding:5px 9px;text-align:center;min-width:46px;line-height:1.3;transition:all .15s;font-family:inherit}
+.dbtn span{display:block;font-weight:600}
+.dbtn small{display:block;font-size:.8em;opacity:.7}
+.dbtn:hover{background:#2a3a4a;color:#ddd;border-color:#4b6580}
+.dbtn.active{background:#1d4ed8;border-color:#3b82f6;color:#fff}
+.dbtn.active small{opacity:.9}
+
+/* Stage / Group */
+.stage{background:#0f2a1a;border-left:4px solid #00cc55;padding:8px 16px;margin:24px 0 10px;font-size:1.1em;font-weight:700;color:#00cc55;border-radius:0 4px 4px 0}
+.group{background:#111827;border-left:4px solid #3b82f6;padding:7px 14px;margin:16px 0 8px;font-size:.95em;font-weight:600;color:#60a5fa;border-radius:0 4px 4px 0}
+.grp-teams{font-weight:400;color:#6b7280;font-size:.82em}
+
+/* Match card */
+.match{display:flex;align-items:center;gap:10px;background:#111122;border:1px solid #1e2035;border-radius:6px;padding:9px 13px;margin-bottom:5px;transition:border-color .15s}
+.match:hover{border-color:#3b82f6}
+.dt{min-width:165px}
+.dt-d{display:block;font-size:.72em;color:#9ca3af}
+.dt-t{display:block;font-size:.92em;font-weight:700;color:#FFD700;line-height:1.6}
+.dt-tw{display:block;font-size:.92em;font-weight:700;color:#38bdf8;line-height:1.4}
+.dt-tl{display:block;font-size:.68em;color:#6b7280;font-weight:400;margin-top:1px}
+.teams{flex:1;display:flex;align-items:center;justify-content:center;gap:8px}
+.team{display:flex;align-items:center;gap:5px;min-width:120px}
+.t-home{justify-content:flex-end}
+.t-away{justify-content:flex-start}
+.fl{font-size:1.35em;line-height:1;flex-shrink:0}
+.tn{font-size:.83em;font-weight:500;line-height:1.25}
+.en{display:block;font-size:.72em;color:#6b7280;font-weight:400}
+.mn{background:#1e3a5f;border-radius:4px;padding:3px 7px;font-size:.76em;color:#93c5fd;white-space:nowrap;text-align:center;min-width:66px;flex-shrink:0}
+.venue{min-width:115px;font-size:.7em;color:#4b5563;text-align:right}
+
+/* Knockout */
+.match-ko .tn{color:#9ca3af;font-size:.8em}
+.match-final{border-color:#FFD700!important;background:#1a1400}
+.match-sf{border-color:#f97316!important;background:#1a0f00}
+.match-qf{border-color:#a78bfa!important;background:#130f1a}
+
+@media(max-width:680px){.venue{display:none}.match{flex-wrap:wrap}.team{min-width:100px}}
+
+</style>
+</head>
+<body>
+
+<h1>🏆 2026 FIFA 世界盃</h1>
+<p class="tz-note">所有時間已轉換為紐西蘭標準時間 NZST (UTC+12)　·　UTC−4 +16h · UTC−5 +17h · UTC−6 +18h · UTC−7 +19h</p>
+
+<!-- ===== DATE FILTER ===== -->
+<div class="date-filter">
+  <div class="filter-label">🗓 選擇比賽日期（NZ 時間）</div>
+  <div class="date-buttons">
+    <button class="dbtn active" onclick="fd('all',this)"><span>全部</span><small>All</small></button>
+    <button class="dbtn" onclick="fd('2026-06-12',this)"><span>6/12</span><small>五</small></button>
+    <button class="dbtn" onclick="fd('2026-06-13',this)"><span>6/13</span><small>六</small></button>
+    <button class="dbtn" onclick="fd('2026-06-14',this)"><span>6/14</span><small>日</small></button>
+    <button class="dbtn" onclick="fd('2026-06-15',this)"><span>6/15</span><small>一</small></button>
+    <button class="dbtn" onclick="fd('2026-06-16',this)"><span>6/16</span><small>二</small></button>
+    <button class="dbtn" onclick="fd('2026-06-17',this)"><span>6/17</span><small>三</small></button>
+    <button class="dbtn" onclick="fd('2026-06-18',this)"><span>6/18</span><small>四</small></button>
+    <button class="dbtn" onclick="fd('2026-06-19',this)"><span>6/19</span><small>五</small></button>
+    <button class="dbtn" onclick="fd('2026-06-20',this)"><span>6/20</span><small>六</small></button>
+    <button class="dbtn" onclick="fd('2026-06-21',this)"><span>6/21</span><small>日</small></button>
+    <button class="dbtn" onclick="fd('2026-06-22',this)"><span>6/22</span><small>一</small></button>
+    <button class="dbtn" onclick="fd('2026-06-23',this)"><span>6/23</span><small>二</small></button>
+    <button class="dbtn" onclick="fd('2026-06-24',this)"><span>6/24</span><small>三</small></button>
+    <button class="dbtn" onclick="fd('2026-06-25',this)"><span>6/25</span><small>四</small></button>
+    <button class="dbtn" onclick="fd('2026-06-26',this)"><span>6/26</span><small>五</small></button>
+    <button class="dbtn" onclick="fd('2026-06-27',this)"><span>6/27</span><small>六</small></button>
+    <button class="dbtn" onclick="fd('2026-06-28',this)"><span>6/28</span><small>日</small></button>
+    <button class="dbtn" onclick="fd('2026-06-29',this)"><span>6/29</span><small>一</small></button>
+    <button class="dbtn" onclick="fd('2026-06-30',this)"><span>6/30</span><small>二</small></button>
+    <button class="dbtn" onclick="fd('2026-07-01',this)"><span>7/1</span><small>三</small></button>
+    <button class="dbtn" onclick="fd('2026-07-02',this)"><span>7/2</span><small>四</small></button>
+    <button class="dbtn" onclick="fd('2026-07-03',this)"><span>7/3</span><small>五</small></button>
+    <button class="dbtn" onclick="fd('2026-07-04',this)"><span>7/4</span><small>六</small></button>
+    <button class="dbtn" onclick="fd('2026-07-05',this)"><span>7/5</span><small>日</small></button>
+    <button class="dbtn" onclick="fd('2026-07-06',this)"><span>7/6</span><small>一</small></button>
+    <button class="dbtn" onclick="fd('2026-07-07',this)"><span>7/7</span><small>二</small></button>
+    <button class="dbtn" onclick="fd('2026-07-08',this)"><span>7/8</span><small>三</small></button>
+    <button class="dbtn" onclick="fd('2026-07-10',this)"><span>7/10</span><small>五</small></button>
+    <button class="dbtn" onclick="fd('2026-07-11',this)"><span>7/11</span><small>六</small></button>
+    <button class="dbtn" onclick="fd('2026-07-12',this)"><span>7/12</span><small>日</small></button>
+    <button class="dbtn" onclick="fd('2026-07-15',this)"><span>7/15</span><small>三</small></button>
+    <button class="dbtn" onclick="fd('2026-07-16',this)"><span>7/16</span><small>四</small></button>
+    <button class="dbtn" onclick="fd('2026-07-19',this)"><span>7/19</span><small>日</small></button>
+    <button class="dbtn" onclick="fd('2026-07-20',this)"><span>7/20</span><small>一</small></button>
+  </div>
+</div>
+
+<!-- ===== GROUP STAGE ===== -->
+<div class="stage-section">
+<div class="stage">⚽ 小組賽</div>
+
+<!-- GROUP A -->
+<div class="group-section">
+<div class="group">A 組 <span class="grp-teams">🇲🇽 墨西哥(H) · 🇿🇦 南非 · 🇰🇷 韓國 · 🇨🇿 捷克</span></div>
+
+<div class="match" data-date="2026-06-12">
+  <div class="dt"><span class="dt-d">6月12日(五)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">墨西哥<em class="en">Mexico</em></span><span class="fl">🇲🇽</span></div>
+    <div class="mn">賽事 1</div>
+    <div class="team t-away"><span class="fl">🇿🇦</span><span class="tn">南非<em class="en">South Africa</em></span></div>
+  </div>
+  <div class="venue">墨西哥城 阿茲特克</div>
+</div>
+
+<div class="match" data-date="2026-06-12">
+  <div class="dt"><span class="dt-d">6月12日(五)</span><span class="dt-t">14:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">韓國<em class="en">Korea Republic</em></span><span class="fl">🇰🇷</span></div>
+    <div class="mn">賽事 2</div>
+    <div class="team t-away"><span class="fl">🇨🇿</span><span class="tn">捷克<em class="en">Czechia</em></span></div>
+  </div>
+  <div class="venue">薩波潘 阿克倫球場</div>
+</div>
+
+<div class="match" data-date="2026-06-19">
+  <div class="dt"><span class="dt-d">6月19日(五)</span><span class="dt-t">04:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">捷克<em class="en">Czechia</em></span><span class="fl">🇨🇿</span></div>
+    <div class="mn">賽事 25</div>
+    <div class="team t-away"><span class="fl">🇿🇦</span><span class="tn">南非<em class="en">South Africa</em></span></div>
+  </div>
+  <div class="venue">亞特蘭大 奔馳體育場</div>
+</div>
+
+<div class="match" data-date="2026-06-19">
+  <div class="dt"><span class="dt-d">6月19日(五)</span><span class="dt-t">13:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">墨西哥<em class="en">Mexico</em></span><span class="fl">🇲🇽</span></div>
+    <div class="mn">賽事 28</div>
+    <div class="team t-away"><span class="fl">🇰🇷</span><span class="tn">韓國<em class="en">Korea Republic</em></span></div>
+  </div>
+  <div class="venue">薩波潘 阿克倫球場</div>
+</div>
+
+<div class="match" data-date="2026-06-25">
+  <div class="dt"><span class="dt-d">6月25日(四)</span><span class="dt-t">13:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">捷克<em class="en">Czechia</em></span><span class="fl">🇨🇿</span></div>
+    <div class="mn">賽事 53</div>
+    <div class="team t-away"><span class="fl">🇲🇽</span><span class="tn">墨西哥<em class="en">Mexico</em></span></div>
+  </div>
+  <div class="venue">墨西哥城 阿茲特克</div>
+</div>
+
+<div class="match" data-date="2026-06-25">
+  <div class="dt"><span class="dt-d">6月25日(四)</span><span class="dt-t">13:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">南非<em class="en">South Africa</em></span><span class="fl">🇿🇦</span></div>
+    <div class="mn">賽事 54</div>
+    <div class="team t-away"><span class="fl">🇰🇷</span><span class="tn">韓國<em class="en">Korea Republic</em></span></div>
+  </div>
+  <div class="venue">瓜達盧佩 BBVA</div>
+</div>
+</div><!-- /group-section A -->
+
+<!-- GROUP B -->
+<div class="group-section">
+<div class="group">B 組 <span class="grp-teams">🇨🇦 加拿大(H) · 🇧🇦 波黑 · 🇶🇦 卡塔爾 · 🇨🇭 瑞士</span></div>
+
+<div class="match" data-date="2026-06-13">
+  <div class="dt"><span class="dt-d">6月13日(六)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">加拿大<em class="en">Canada</em></span><span class="fl">🇨🇦</span></div>
+    <div class="mn">賽事 3</div>
+    <div class="team t-away"><span class="fl">🇧🇦</span><span class="tn">波黑<em class="en">Bosnia &amp; Herz.</em></span></div>
+  </div>
+  <div class="venue">多倫多 BMO球場</div>
+</div>
+
+<div class="match" data-date="2026-06-14">
+  <div class="dt"><span class="dt-d">6月14日(日)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">卡塔爾<em class="en">Qatar</em></span><span class="fl">🇶🇦</span></div>
+    <div class="mn">賽事 8</div>
+    <div class="team t-away"><span class="fl">🇨🇭</span><span class="tn">瑞士<em class="en">Switzerland</em></span></div>
+  </div>
+  <div class="venue">聖克拉拉 李維斯</div>
+</div>
+
+<div class="match" data-date="2026-06-19">
+  <div class="dt"><span class="dt-d">6月19日(五)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">瑞士<em class="en">Switzerland</em></span><span class="fl">🇨🇭</span></div>
+    <div class="mn">賽事 26</div>
+    <div class="team t-away"><span class="fl">🇧🇦</span><span class="tn">波黑<em class="en">Bosnia &amp; Herz.</em></span></div>
+  </div>
+  <div class="venue">英格爾伍德 SoFi</div>
+</div>
+
+<div class="match" data-date="2026-06-19">
+  <div class="dt"><span class="dt-d">6月19日(五)</span><span class="dt-t">10:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">加拿大<em class="en">Canada</em></span><span class="fl">🇨🇦</span></div>
+    <div class="mn">賽事 27</div>
+    <div class="team t-away"><span class="fl">🇶🇦</span><span class="tn">卡塔爾<em class="en">Qatar</em></span></div>
+  </div>
+  <div class="venue">溫哥華 卑詩體育館</div>
+</div>
+
+<div class="match" data-date="2026-06-25">
+  <div class="dt"><span class="dt-d">6月25日(四)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">瑞士<em class="en">Switzerland</em></span><span class="fl">🇨🇭</span></div>
+    <div class="mn">賽事 51</div>
+    <div class="team t-away"><span class="fl">🇨🇦</span><span class="tn">加拿大<em class="en">Canada</em></span></div>
+  </div>
+  <div class="venue">溫哥華 卑詩體育館</div>
+</div>
+
+<div class="match" data-date="2026-06-25">
+  <div class="dt"><span class="dt-d">6月25日(四)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">波黑<em class="en">Bosnia &amp; Herz.</em></span><span class="fl">🇧🇦</span></div>
+    <div class="mn">賽事 52</div>
+    <div class="team t-away"><span class="fl">🇶🇦</span><span class="tn">卡塔爾<em class="en">Qatar</em></span></div>
+  </div>
+  <div class="venue">西雅圖 流明球場</div>
+</div>
+</div><!-- /group-section B -->
+
+<!-- GROUP C -->
+<div class="group-section">
+<div class="group">C 組 <span class="grp-teams">🇧🇷 巴西 · 🇲🇦 摩洛哥 · 🇭🇹 海地 · 🏴󠁧󠁢󠁳󠁣󠁴󠁿 蘇格蘭</span></div>
+
+<div class="match" data-date="2026-06-14">
+  <div class="dt"><span class="dt-d">6月14日(日)</span><span class="dt-t">10:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">巴西<em class="en">Brazil</em></span><span class="fl">🇧🇷</span></div>
+    <div class="mn">賽事 7</div>
+    <div class="team t-away"><span class="fl">🇲🇦</span><span class="tn">摩洛哥<em class="en">Morocco</em></span></div>
+  </div>
+  <div class="venue">東盧瑟福 大都會人壽</div>
+</div>
+
+<div class="match" data-date="2026-06-14">
+  <div class="dt"><span class="dt-d">6月14日(日)</span><span class="dt-t">13:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">海地<em class="en">Haiti</em></span><span class="fl">🇭🇹</span></div>
+    <div class="mn">賽事 5</div>
+    <div class="team t-away"><span class="fl">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span><span class="tn">蘇格蘭<em class="en">Scotland</em></span></div>
+  </div>
+  <div class="venue">福克斯堡 吉列體育場</div>
+</div>
+
+<div class="match" data-date="2026-06-20">
+  <div class="dt"><span class="dt-d">6月20日(六)</span><span class="dt-t">10:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">蘇格蘭<em class="en">Scotland</em></span><span class="fl">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span></div>
+    <div class="mn">賽事 30</div>
+    <div class="team t-away"><span class="fl">🇲🇦</span><span class="tn">摩洛哥<em class="en">Morocco</em></span></div>
+  </div>
+  <div class="venue">福克斯堡 吉列體育場</div>
+</div>
+
+<div class="match" data-date="2026-06-20">
+  <div class="dt"><span class="dt-d">6月20日(六)</span><span class="dt-t">13:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">巴西<em class="en">Brazil</em></span><span class="fl">🇧🇷</span></div>
+    <div class="mn">賽事 29</div>
+    <div class="team t-away"><span class="fl">🇭🇹</span><span class="tn">海地<em class="en">Haiti</em></span></div>
+  </div>
+  <div class="venue">費城 林肯金融球場</div>
+</div>
+
+<div class="match" data-date="2026-06-25">
+  <div class="dt"><span class="dt-d">6月25日(四)</span><span class="dt-t">10:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">蘇格蘭<em class="en">Scotland</em></span><span class="fl">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span></div>
+    <div class="mn">賽事 49</div>
+    <div class="team t-away"><span class="fl">🇧🇷</span><span class="tn">巴西<em class="en">Brazil</em></span></div>
+  </div>
+  <div class="venue">邁阿密 硬石體育場</div>
+</div>
+
+<div class="match" data-date="2026-06-25">
+  <div class="dt"><span class="dt-d">6月25日(四)</span><span class="dt-t">10:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">摩洛哥<em class="en">Morocco</em></span><span class="fl">🇲🇦</span></div>
+    <div class="mn">賽事 50</div>
+    <div class="team t-away"><span class="fl">🇭🇹</span><span class="tn">海地<em class="en">Haiti</em></span></div>
+  </div>
+  <div class="venue">亞特蘭大 奔馳體育場</div>
+</div>
+</div><!-- /group-section C -->
+
+<!-- GROUP D -->
+<div class="group-section">
+<div class="group">D 組 <span class="grp-teams">🇺🇸 美國(H) · 🇵🇾 巴拉圭 · 🇦🇺 澳大利亞 · 🇹🇷 土耳其</span></div>
+
+<div class="match" data-date="2026-06-13">
+  <div class="dt"><span class="dt-d">6月13日(六)</span><span class="dt-t">13:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">美國<em class="en">USA</em></span><span class="fl">🇺🇸</span></div>
+    <div class="mn">賽事 4</div>
+    <div class="team t-away"><span class="fl">🇵🇾</span><span class="tn">巴拉圭<em class="en">Paraguay</em></span></div>
+  </div>
+  <div class="venue">英格爾伍德 SoFi</div>
+</div>
+
+<div class="match" data-date="2026-06-14">
+  <div class="dt"><span class="dt-d">6月14日(日)</span><span class="dt-t">16:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">澳大利亞<em class="en">Australia</em></span><span class="fl">🇦🇺</span></div>
+    <div class="mn">賽事 6</div>
+    <div class="team t-away"><span class="fl">🇹🇷</span><span class="tn">土耳其<em class="en">Türkiye</em></span></div>
+  </div>
+  <div class="venue">溫哥華 卑詩體育館</div>
+</div>
+
+<div class="match" data-date="2026-06-20">
+  <div class="dt"><span class="dt-d">6月20日(六)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">美國<em class="en">USA</em></span><span class="fl">🇺🇸</span></div>
+    <div class="mn">賽事 32</div>
+    <div class="team t-away"><span class="fl">🇦🇺</span><span class="tn">澳大利亞<em class="en">Australia</em></span></div>
+  </div>
+  <div class="venue">西雅圖 流明球場</div>
+</div>
+
+<div class="match" data-date="2026-06-20">
+  <div class="dt"><span class="dt-d">6月20日(六)</span><span class="dt-t">16:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">土耳其<em class="en">Türkiye</em></span><span class="fl">🇹🇷</span></div>
+    <div class="mn">賽事 31</div>
+    <div class="team t-away"><span class="fl">🇵🇾</span><span class="tn">巴拉圭<em class="en">Paraguay</em></span></div>
+  </div>
+  <div class="venue">聖克拉拉 李維斯</div>
+</div>
+
+<div class="match" data-date="2026-06-26">
+  <div class="dt"><span class="dt-d">6月26日(五)</span><span class="dt-t">14:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">土耳其<em class="en">Türkiye</em></span><span class="fl">🇹🇷</span></div>
+    <div class="mn">賽事 59</div>
+    <div class="team t-away"><span class="fl">🇺🇸</span><span class="tn">美國<em class="en">USA</em></span></div>
+  </div>
+  <div class="venue">英格爾伍德 SoFi</div>
+</div>
+
+<div class="match" data-date="2026-06-26">
+  <div class="dt"><span class="dt-d">6月26日(五)</span><span class="dt-t">14:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">巴拉圭<em class="en">Paraguay</em></span><span class="fl">🇵🇾</span></div>
+    <div class="mn">賽事 60</div>
+    <div class="team t-away"><span class="fl">🇦🇺</span><span class="tn">澳大利亞<em class="en">Australia</em></span></div>
+  </div>
+  <div class="venue">聖克拉拉 李維斯</div>
+</div>
+</div><!-- /group-section D -->
+
+<!-- GROUP E -->
+<div class="group-section">
+<div class="group">E 組 <span class="grp-teams">🇩🇪 德國 · 🇨🇼 庫拉索 · 🇨🇮 科特迪瓦 · 🇪🇨 厄瓜多爾</span></div>
+
+<div class="match" data-date="2026-06-15">
+  <div class="dt"><span class="dt-d">6月15日(一)</span><span class="dt-t">05:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">德國<em class="en">Germany</em></span><span class="fl">🇩🇪</span></div>
+    <div class="mn">賽事 10</div>
+    <div class="team t-away"><span class="fl">🇨🇼</span><span class="tn">庫拉索<em class="en">Curaçao</em></span></div>
+  </div>
+  <div class="venue">侯斯頓 NRG</div>
+</div>
+
+<div class="match" data-date="2026-06-15">
+  <div class="dt"><span class="dt-d">6月15日(一)</span><span class="dt-t">11:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">科特迪瓦<em class="en">Côte d'Ivoire</em></span><span class="fl">🇨🇮</span></div>
+    <div class="mn">賽事 9</div>
+    <div class="team t-away"><span class="fl">🇪🇨</span><span class="tn">厄瓜多爾<em class="en">Ecuador</em></span></div>
+  </div>
+  <div class="venue">費城 林肯金融球場</div>
+</div>
+
+<div class="match" data-date="2026-06-21">
+  <div class="dt"><span class="dt-d">6月21日(日)</span><span class="dt-t">08:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">德國<em class="en">Germany</em></span><span class="fl">🇩🇪</span></div>
+    <div class="mn">賽事 33</div>
+    <div class="team t-away"><span class="fl">🇨🇮</span><span class="tn">科特迪瓦<em class="en">Côte d'Ivoire</em></span></div>
+  </div>
+  <div class="venue">多倫多 BMO球場</div>
+</div>
+
+<div class="match" data-date="2026-06-21">
+  <div class="dt"><span class="dt-d">6月21日(日)</span><span class="dt-t">12:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">厄瓜多爾<em class="en">Ecuador</em></span><span class="fl">🇪🇨</span></div>
+    <div class="mn">賽事 34</div>
+    <div class="team t-away"><span class="fl">🇨🇼</span><span class="tn">庫拉索<em class="en">Curaçao</em></span></div>
+  </div>
+  <div class="venue">堪薩斯城 箭頭體育場</div>
+</div>
+
+<div class="match" data-date="2026-06-26">
+  <div class="dt"><span class="dt-d">6月26日(五)</span><span class="dt-t">08:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">厄瓜多爾<em class="en">Ecuador</em></span><span class="fl">🇪🇨</span></div>
+    <div class="mn">賽事 55</div>
+    <div class="team t-away"><span class="fl">🇩🇪</span><span class="tn">德國<em class="en">Germany</em></span></div>
+  </div>
+  <div class="venue">東盧瑟福 大都會人壽</div>
+</div>
+
+<div class="match" data-date="2026-06-26">
+  <div class="dt"><span class="dt-d">6月26日(五)</span><span class="dt-t">08:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">庫拉索<em class="en">Curaçao</em></span><span class="fl">🇨🇼</span></div>
+    <div class="mn">賽事 56</div>
+    <div class="team t-away"><span class="fl">🇨🇮</span><span class="tn">科特迪瓦<em class="en">Côte d'Ivoire</em></span></div>
+  </div>
+  <div class="venue">費城 林肯金融球場</div>
+</div>
+</div><!-- /group-section E -->
+
+<!-- GROUP F -->
+<div class="group-section">
+<div class="group">F 組 <span class="grp-teams">🇳🇱 荷蘭 · 🇯🇵 日本 · 🇸🇪 瑞典 · 🇹🇳 突尼西亞</span></div>
+
+<div class="match" data-date="2026-06-15">
+  <div class="dt"><span class="dt-d">6月15日(一)</span><span class="dt-t">08:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">荷蘭<em class="en">Netherlands</em></span><span class="fl">🇳🇱</span></div>
+    <div class="mn">賽事 11</div>
+    <div class="team t-away"><span class="fl">🇯🇵</span><span class="tn">日本<em class="en">Japan</em></span></div>
+  </div>
+  <div class="venue">阿靈頓 AT&amp;T</div>
+</div>
+
+<div class="match" data-date="2026-06-15">
+  <div class="dt"><span class="dt-d">6月15日(一)</span><span class="dt-t">14:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">瑞典<em class="en">Sweden</em></span><span class="fl">🇸🇪</span></div>
+    <div class="mn">賽事 12</div>
+    <div class="team t-away"><span class="fl">🇹🇳</span><span class="tn">突尼西亞<em class="en">Tunisia</em></span></div>
+  </div>
+  <div class="venue">瓜達盧佩 BBVA</div>
+</div>
+
+<div class="match" data-date="2026-06-21">
+  <div class="dt"><span class="dt-d">6月21日(日)</span><span class="dt-t">05:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">荷蘭<em class="en">Netherlands</em></span><span class="fl">🇳🇱</span></div>
+    <div class="mn">賽事 35</div>
+    <div class="team t-away"><span class="fl">🇸🇪</span><span class="tn">瑞典<em class="en">Sweden</em></span></div>
+  </div>
+  <div class="venue">侯斯頓 NRG</div>
+</div>
+
+<div class="match" data-date="2026-06-21">
+  <div class="dt"><span class="dt-d">6月21日(日)</span><span class="dt-t">16:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">突尼西亞<em class="en">Tunisia</em></span><span class="fl">🇹🇳</span></div>
+    <div class="mn">賽事 36</div>
+    <div class="team t-away"><span class="fl">🇯🇵</span><span class="tn">日本<em class="en">Japan</em></span></div>
+  </div>
+  <div class="venue">瓜達盧佩 BBVA</div>
+</div>
+
+<div class="match" data-date="2026-06-26">
+  <div class="dt"><span class="dt-d">6月26日(五)</span><span class="dt-t">11:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">日本<em class="en">Japan</em></span><span class="fl">🇯🇵</span></div>
+    <div class="mn">賽事 57</div>
+    <div class="team t-away"><span class="fl">🇸🇪</span><span class="tn">瑞典<em class="en">Sweden</em></span></div>
+  </div>
+  <div class="venue">阿靈頓 AT&amp;T</div>
+</div>
+
+<div class="match" data-date="2026-06-26">
+  <div class="dt"><span class="dt-d">6月26日(五)</span><span class="dt-t">11:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">突尼西亞<em class="en">Tunisia</em></span><span class="fl">🇹🇳</span></div>
+    <div class="mn">賽事 58</div>
+    <div class="team t-away"><span class="fl">🇳🇱</span><span class="tn">荷蘭<em class="en">Netherlands</em></span></div>
+  </div>
+  <div class="venue">堪薩斯城 箭頭體育場</div>
+</div>
+</div><!-- /group-section F -->
+
+<!-- GROUP G -->
+<div class="group-section">
+<div class="group">G 組 <span class="grp-teams">🇧🇪 比利時 · 🇪🇬 埃及 · 🇮🇷 伊朗 · 🇳🇿 新西蘭</span></div>
+
+<div class="match" data-date="2026-06-16">
+  <div class="dt"><span class="dt-d">6月16日(二)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">比利時<em class="en">Belgium</em></span><span class="fl">🇧🇪</span></div>
+    <div class="mn">賽事 15</div>
+    <div class="team t-away"><span class="fl">🇪🇬</span><span class="tn">埃及<em class="en">Egypt</em></span></div>
+  </div>
+  <div class="venue">西雅圖 流明球場</div>
+</div>
+
+<div class="match" data-date="2026-06-16">
+  <div class="dt"><span class="dt-d">6月16日(二)</span><span class="dt-t">13:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">伊朗<em class="en">Iran</em></span><span class="fl">🇮🇷</span></div>
+    <div class="mn">賽事 16</div>
+    <div class="team t-away"><span class="fl">🇳🇿</span><span class="tn">新西蘭<em class="en">New Zealand</em></span></div>
+  </div>
+  <div class="venue">英格爾伍德 SoFi</div>
+</div>
+
+<div class="match" data-date="2026-06-22">
+  <div class="dt"><span class="dt-d">6月22日(一)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">比利時<em class="en">Belgium</em></span><span class="fl">🇧🇪</span></div>
+    <div class="mn">賽事 39</div>
+    <div class="team t-away"><span class="fl">🇮🇷</span><span class="tn">伊朗<em class="en">Iran</em></span></div>
+  </div>
+  <div class="venue">英格爾伍德 SoFi</div>
+</div>
+
+<div class="match" data-date="2026-06-22">
+  <div class="dt"><span class="dt-d">6月22日(一)</span><span class="dt-t">13:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">新西蘭<em class="en">New Zealand</em></span><span class="fl">🇳🇿</span></div>
+    <div class="mn">賽事 40</div>
+    <div class="team t-away"><span class="fl">🇪🇬</span><span class="tn">埃及<em class="en">Egypt</em></span></div>
+  </div>
+  <div class="venue">溫哥華 卑詩體育館</div>
+</div>
+
+<div class="match" data-date="2026-06-27">
+  <div class="dt"><span class="dt-d">6月27日(六)</span><span class="dt-t">15:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">新西蘭<em class="en">New Zealand</em></span><span class="fl">🇳🇿</span></div>
+    <div class="mn">賽事 63</div>
+    <div class="team t-away"><span class="fl">🇧🇪</span><span class="tn">比利時<em class="en">Belgium</em></span></div>
+  </div>
+  <div class="venue">溫哥華 卑詩體育館</div>
+</div>
+
+<div class="match" data-date="2026-06-27">
+  <div class="dt"><span class="dt-d">6月27日(六)</span><span class="dt-t">15:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">埃及<em class="en">Egypt</em></span><span class="fl">🇪🇬</span></div>
+    <div class="mn">賽事 64</div>
+    <div class="team t-away"><span class="fl">🇮🇷</span><span class="tn">伊朗<em class="en">Iran</em></span></div>
+  </div>
+  <div class="venue">西雅圖 流明球場</div>
+</div>
+</div><!-- /group-section G -->
+
+<!-- GROUP H -->
+<div class="group-section">
+<div class="group">H 組 <span class="grp-teams">🇪🇸 西班牙 · 🇨🇻 佛得角 · 🇸🇦 沙烏地阿拉伯 · 🇺🇾 烏拉圭</span></div>
+
+<div class="match" data-date="2026-06-16">
+  <div class="dt"><span class="dt-d">6月16日(二)</span><span class="dt-t">04:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">西班牙<em class="en">Spain</em></span><span class="fl">🇪🇸</span></div>
+    <div class="mn">賽事 14</div>
+    <div class="team t-away"><span class="fl">🇨🇻</span><span class="tn">佛得角<em class="en">Cape Verde</em></span></div>
+  </div>
+  <div class="venue">亞特蘭大 奔馳體育場</div>
+</div>
+
+<div class="match" data-date="2026-06-16">
+  <div class="dt"><span class="dt-d">6月16日(二)</span><span class="dt-t">10:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">沙烏地阿拉伯<em class="en">Saudi Arabia</em></span><span class="fl">🇸🇦</span></div>
+    <div class="mn">賽事 13</div>
+    <div class="team t-away"><span class="fl">🇺🇾</span><span class="tn">烏拉圭<em class="en">Uruguay</em></span></div>
+  </div>
+  <div class="venue">邁阿密 硬石體育場</div>
+</div>
+
+<div class="match" data-date="2026-06-22">
+  <div class="dt"><span class="dt-d">6月22日(一)</span><span class="dt-t">04:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">西班牙<em class="en">Spain</em></span><span class="fl">🇪🇸</span></div>
+    <div class="mn">賽事 38</div>
+    <div class="team t-away"><span class="fl">🇸🇦</span><span class="tn">沙烏地阿拉伯<em class="en">Saudi Arabia</em></span></div>
+  </div>
+  <div class="venue">亞特蘭大 奔馳體育場</div>
+</div>
+
+<div class="match" data-date="2026-06-22">
+  <div class="dt"><span class="dt-d">6月22日(一)</span><span class="dt-t">10:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">烏拉圭<em class="en">Uruguay</em></span><span class="fl">🇺🇾</span></div>
+    <div class="mn">賽事 37</div>
+    <div class="team t-away"><span class="fl">🇨🇻</span><span class="tn">佛得角<em class="en">Cape Verde</em></span></div>
+  </div>
+  <div class="venue">邁阿密 硬石體育場</div>
+</div>
+
+<div class="match" data-date="2026-06-27">
+  <div class="dt"><span class="dt-d">6月27日(六)</span><span class="dt-t">12:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">佛得角<em class="en">Cape Verde</em></span><span class="fl">🇨🇻</span></div>
+    <div class="mn">賽事 65</div>
+    <div class="team t-away"><span class="fl">🇸🇦</span><span class="tn">沙烏地阿拉伯<em class="en">Saudi Arabia</em></span></div>
+  </div>
+  <div class="venue">侯斯頓 NRG</div>
+</div>
+
+<div class="match" data-date="2026-06-27">
+  <div class="dt"><span class="dt-d">6月27日(六)</span><span class="dt-t">12:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">烏拉圭<em class="en">Uruguay</em></span><span class="fl">🇺🇾</span></div>
+    <div class="mn">賽事 66</div>
+    <div class="team t-away"><span class="fl">🇪🇸</span><span class="tn">西班牙<em class="en">Spain</em></span></div>
+  </div>
+  <div class="venue">薩波潘 阿克倫球場</div>
+</div>
+</div><!-- /group-section H -->
+
+<!-- GROUP I -->
+<div class="group-section">
+<div class="group">I 組 <span class="grp-teams">🇫🇷 法國 · 🇸🇳 塞內加爾 · 🇮🇶 伊拉克 · 🇳🇴 挪威</span></div>
+
+<div class="match" data-date="2026-06-17">
+  <div class="dt"><span class="dt-d">6月17日(三)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">法國<em class="en">France</em></span><span class="fl">🇫🇷</span></div>
+    <div class="mn">賽事 17</div>
+    <div class="team t-away"><span class="fl">🇸🇳</span><span class="tn">塞內加爾<em class="en">Senegal</em></span></div>
+  </div>
+  <div class="venue">東盧瑟福 大都會人壽</div>
+</div>
+
+<div class="match" data-date="2026-06-17">
+  <div class="dt"><span class="dt-d">6月17日(三)</span><span class="dt-t">10:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">伊拉克<em class="en">Iraq</em></span><span class="fl">🇮🇶</span></div>
+    <div class="mn">賽事 18</div>
+    <div class="team t-away"><span class="fl">🇳🇴</span><span class="tn">挪威<em class="en">Norway</em></span></div>
+  </div>
+  <div class="venue">福克斯堡 吉列體育場</div>
+</div>
+
+<div class="match" data-date="2026-06-23">
+  <div class="dt"><span class="dt-d">6月23日(二)</span><span class="dt-t">09:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">法國<em class="en">France</em></span><span class="fl">🇫🇷</span></div>
+    <div class="mn">賽事 42</div>
+    <div class="team t-away"><span class="fl">🇮🇶</span><span class="tn">伊拉克<em class="en">Iraq</em></span></div>
+  </div>
+  <div class="venue">費城 林肯金融球場</div>
+</div>
+
+<div class="match" data-date="2026-06-23">
+  <div class="dt"><span class="dt-d">6月23日(二)</span><span class="dt-t">12:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">挪威<em class="en">Norway</em></span><span class="fl">🇳🇴</span></div>
+    <div class="mn">賽事 41</div>
+    <div class="team t-away"><span class="fl">🇸🇳</span><span class="tn">塞內加爾<em class="en">Senegal</em></span></div>
+  </div>
+  <div class="venue">東盧瑟福 大都會人壽</div>
+</div>
+
+<div class="match" data-date="2026-06-27">
+  <div class="dt"><span class="dt-d">6月27日(六)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">挪威<em class="en">Norway</em></span><span class="fl">🇳🇴</span></div>
+    <div class="mn">賽事 61</div>
+    <div class="team t-away"><span class="fl">🇫🇷</span><span class="tn">法國<em class="en">France</em></span></div>
+  </div>
+  <div class="venue">福克斯堡 吉列體育場</div>
+</div>
+
+<div class="match" data-date="2026-06-27">
+  <div class="dt"><span class="dt-d">6月27日(六)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">塞內加爾<em class="en">Senegal</em></span><span class="fl">🇸🇳</span></div>
+    <div class="mn">賽事 62</div>
+    <div class="team t-away"><span class="fl">🇮🇶</span><span class="tn">伊拉克<em class="en">Iraq</em></span></div>
+  </div>
+  <div class="venue">多倫多 BMO球場</div>
+</div>
+</div><!-- /group-section I -->
+
+<!-- GROUP J -->
+<div class="group-section">
+<div class="group">J 組 <span class="grp-teams">🇦🇷 阿根廷 · 🇩🇿 阿爾及利亞 · 🇦🇹 奧地利 · 🇯🇴 約旦</span></div>
+
+<div class="match" data-date="2026-06-16">
+  <div class="dt"><span class="dt-d">6月16日(二)</span><span class="dt-t">16:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">奧地利<em class="en">Austria</em></span><span class="fl">🇦🇹</span></div>
+    <div class="mn">賽事 20</div>
+    <div class="team t-away"><span class="fl">🇯🇴</span><span class="tn">約旦<em class="en">Jordan</em></span></div>
+  </div>
+  <div class="venue">聖克拉拉 李維斯</div>
+</div>
+
+<div class="match" data-date="2026-06-17">
+  <div class="dt"><span class="dt-d">6月17日(三)</span><span class="dt-t">13:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">阿根廷<em class="en">Argentina</em></span><span class="fl">🇦🇷</span></div>
+    <div class="mn">賽事 19</div>
+    <div class="team t-away"><span class="fl">🇩🇿</span><span class="tn">阿爾及利亞<em class="en">Algeria</em></span></div>
+  </div>
+  <div class="venue">堪薩斯城 箭頭體育場</div>
+</div>
+
+<div class="match" data-date="2026-06-23">
+  <div class="dt"><span class="dt-d">6月23日(二)</span><span class="dt-t">05:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">阿根廷<em class="en">Argentina</em></span><span class="fl">🇦🇷</span></div>
+    <div class="mn">賽事 43</div>
+    <div class="team t-away"><span class="fl">🇦🇹</span><span class="tn">奧地利<em class="en">Austria</em></span></div>
+  </div>
+  <div class="venue">阿靈頓 AT&amp;T</div>
+</div>
+
+<div class="match" data-date="2026-06-23">
+  <div class="dt"><span class="dt-d">6月23日(二)</span><span class="dt-t">15:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">約旦<em class="en">Jordan</em></span><span class="fl">🇯🇴</span></div>
+    <div class="mn">賽事 44</div>
+    <div class="team t-away"><span class="fl">🇩🇿</span><span class="tn">阿爾及利亞<em class="en">Algeria</em></span></div>
+  </div>
+  <div class="venue">聖克拉拉 李維斯</div>
+</div>
+
+<div class="match" data-date="2026-06-28">
+  <div class="dt"><span class="dt-d">6月28日(日)</span><span class="dt-t">14:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">阿爾及利亞<em class="en">Algeria</em></span><span class="fl">🇩🇿</span></div>
+    <div class="mn">賽事 69</div>
+    <div class="team t-away"><span class="fl">🇦🇹</span><span class="tn">奧地利<em class="en">Austria</em></span></div>
+  </div>
+  <div class="venue">堪薩斯城 箭頭體育場</div>
+</div>
+
+<div class="match" data-date="2026-06-28">
+  <div class="dt"><span class="dt-d">6月28日(日)</span><span class="dt-t">14:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">約旦<em class="en">Jordan</em></span><span class="fl">🇯🇴</span></div>
+    <div class="mn">賽事 70</div>
+    <div class="team t-away"><span class="fl">🇦🇷</span><span class="tn">阿根廷<em class="en">Argentina</em></span></div>
+  </div>
+  <div class="venue">阿靈頓 AT&amp;T</div>
+</div>
+</div><!-- /group-section J -->
+
+<!-- GROUP K -->
+<div class="group-section">
+<div class="group">K 組 <span class="grp-teams">🇵🇹 葡萄牙 · 🇨🇩 剛果民主共和國 · 🇺🇿 烏茲別克斯坦 · 🇨🇴 哥倫比亞</span></div>
+
+<div class="match" data-date="2026-06-18">
+  <div class="dt"><span class="dt-d">6月18日(四)</span><span class="dt-t">05:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">葡萄牙<em class="en">Portugal</em></span><span class="fl">🇵🇹</span></div>
+    <div class="mn">賽事 23</div>
+    <div class="team t-away"><span class="fl">🇨🇩</span><span class="tn">剛果DR<em class="en">DR Congo</em></span></div>
+  </div>
+  <div class="venue">侯斯頓 NRG</div>
+</div>
+
+<div class="match" data-date="2026-06-18">
+  <div class="dt"><span class="dt-d">6月18日(四)</span><span class="dt-t">14:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">烏茲別克斯坦<em class="en">Uzbekistan</em></span><span class="fl">🇺🇿</span></div>
+    <div class="mn">賽事 24</div>
+    <div class="team t-away"><span class="fl">🇨🇴</span><span class="tn">哥倫比亞<em class="en">Colombia</em></span></div>
+  </div>
+  <div class="venue">墨西哥城 阿茲特克</div>
+</div>
+
+<div class="match" data-date="2026-06-24">
+  <div class="dt"><span class="dt-d">6月24日(三)</span><span class="dt-t">05:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">葡萄牙<em class="en">Portugal</em></span><span class="fl">🇵🇹</span></div>
+    <div class="mn">賽事 47</div>
+    <div class="team t-away"><span class="fl">🇺🇿</span><span class="tn">烏茲別克斯坦<em class="en">Uzbekistan</em></span></div>
+  </div>
+  <div class="venue">侯斯頓 NRG</div>
+</div>
+
+<div class="match" data-date="2026-06-24">
+  <div class="dt"><span class="dt-d">6月24日(三)</span><span class="dt-t">14:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">哥倫比亞<em class="en">Colombia</em></span><span class="fl">🇨🇴</span></div>
+    <div class="mn">賽事 48</div>
+    <div class="team t-away"><span class="fl">🇨🇩</span><span class="tn">剛果DR<em class="en">DR Congo</em></span></div>
+  </div>
+  <div class="venue">薩波潘 阿克倫球場</div>
+</div>
+
+<div class="match" data-date="2026-06-28">
+  <div class="dt"><span class="dt-d">6月28日(日)</span><span class="dt-t">11:30</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">哥倫比亞<em class="en">Colombia</em></span><span class="fl">🇨🇴</span></div>
+    <div class="mn">賽事 71</div>
+    <div class="team t-away"><span class="fl">🇵🇹</span><span class="tn">葡萄牙<em class="en">Portugal</em></span></div>
+  </div>
+  <div class="venue">邁阿密 硬石體育場</div>
+</div>
+
+<div class="match" data-date="2026-06-28">
+  <div class="dt"><span class="dt-d">6月28日(日)</span><span class="dt-t">11:30</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">剛果DR<em class="en">DR Congo</em></span><span class="fl">🇨🇩</span></div>
+    <div class="mn">賽事 72</div>
+    <div class="team t-away"><span class="fl">🇺🇿</span><span class="tn">烏茲別克斯坦<em class="en">Uzbekistan</em></span></div>
+  </div>
+  <div class="venue">亞特蘭大 奔馳體育場</div>
+</div>
+</div><!-- /group-section K -->
+
+<!-- GROUP L -->
+<div class="group-section">
+<div class="group">L 組 <span class="grp-teams">🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格蘭 · 🇭🇷 克羅地亞 · 🇬🇭 加納 · 🇵🇦 巴拿馬</span></div>
+
+<div class="match" data-date="2026-06-18">
+  <div class="dt"><span class="dt-d">6月18日(四)</span><span class="dt-t">08:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">英格蘭<em class="en">England</em></span><span class="fl">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span></div>
+    <div class="mn">賽事 22</div>
+    <div class="team t-away"><span class="fl">🇭🇷</span><span class="tn">克羅地亞<em class="en">Croatia</em></span></div>
+  </div>
+  <div class="venue">阿靈頓 AT&amp;T</div>
+</div>
+
+<div class="match" data-date="2026-06-18">
+  <div class="dt"><span class="dt-d">6月18日(四)</span><span class="dt-t">11:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">加納<em class="en">Ghana</em></span><span class="fl">🇬🇭</span></div>
+    <div class="mn">賽事 21</div>
+    <div class="team t-away"><span class="fl">🇵🇦</span><span class="tn">巴拿馬<em class="en">Panama</em></span></div>
+  </div>
+  <div class="venue">多倫多 BMO球場</div>
+</div>
+
+<div class="match" data-date="2026-06-24">
+  <div class="dt"><span class="dt-d">6月24日(三)</span><span class="dt-t">08:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">英格蘭<em class="en">England</em></span><span class="fl">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span></div>
+    <div class="mn">賽事 45</div>
+    <div class="team t-away"><span class="fl">🇬🇭</span><span class="tn">加納<em class="en">Ghana</em></span></div>
+  </div>
+  <div class="venue">福克斯堡 吉列體育場</div>
+</div>
+
+<div class="match" data-date="2026-06-24">
+  <div class="dt"><span class="dt-d">6月24日(三)</span><span class="dt-t">11:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">巴拿馬<em class="en">Panama</em></span><span class="fl">🇵🇦</span></div>
+    <div class="mn">賽事 46</div>
+    <div class="team t-away"><span class="fl">🇭🇷</span><span class="tn">克羅地亞<em class="en">Croatia</em></span></div>
+  </div>
+  <div class="venue">多倫多 BMO球場</div>
+</div>
+
+<div class="match" data-date="2026-06-28">
+  <div class="dt"><span class="dt-d">6月28日(日)</span><span class="dt-t">09:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">巴拿馬<em class="en">Panama</em></span><span class="fl">🇵🇦</span></div>
+    <div class="mn">賽事 67</div>
+    <div class="team t-away"><span class="fl">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="tn">英格蘭<em class="en">England</em></span></div>
+  </div>
+  <div class="venue">東盧瑟福 大都會人壽</div>
+</div>
+
+<div class="match" data-date="2026-06-28">
+  <div class="dt"><span class="dt-d">6月28日(日)</span><span class="dt-t">09:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">克羅地亞<em class="en">Croatia</em></span><span class="fl">🇭🇷</span></div>
+    <div class="mn">賽事 68</div>
+    <div class="team t-away"><span class="fl">🇬🇭</span><span class="tn">加納<em class="en">Ghana</em></span></div>
+  </div>
+  <div class="venue">費城 林肯金融球場</div>
+</div>
+</div><!-- /group-section L -->
+</div><!-- /stage-section group -->
+
+<!-- ===== ROUND OF 32 ===== -->
+<div class="stage-section">
+<div class="stage">🥊 三十二強 (Round of 32)</div>
+<div class="group-section">
+
+<div class="match match-ko" data-date="2026-06-29">
+  <div class="dt"><span class="dt-d">6月29日(一)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">A組次名</span></div>
+    <div class="mn">賽事 73</div>
+    <div class="team t-away"><span class="tn">B組次名</span></div>
+  </div>
+  <div class="venue">英格爾伍德 SoFi</div>
+</div>
+
+<div class="match match-ko" data-date="2026-06-30">
+  <div class="dt"><span class="dt-d">6月30日(二)</span><span class="dt-t">05:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">C組首名</span></div>
+    <div class="mn">賽事 76</div>
+    <div class="team t-away"><span class="tn">F組次名</span></div>
+  </div>
+  <div class="venue">侯斯頓 NRG</div>
+</div>
+
+<div class="match match-ko" data-date="2026-06-30">
+  <div class="dt"><span class="dt-d">6月30日(二)</span><span class="dt-t">08:30</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">E組首名</span></div>
+    <div class="mn">賽事 74</div>
+    <div class="team t-away"><span class="tn">A/B/C/D/F組第三位</span></div>
+  </div>
+  <div class="venue">福克斯堡 吉列體育場</div>
+</div>
+
+<div class="match match-ko" data-date="2026-06-30">
+  <div class="dt"><span class="dt-d">6月30日(二)</span><span class="dt-t">13:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">F組首名</span></div>
+    <div class="mn">賽事 75</div>
+    <div class="team t-away"><span class="tn">C組次名</span></div>
+  </div>
+  <div class="venue">瓜達盧佩 BBVA</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-01">
+  <div class="dt"><span class="dt-d">7月1日(三)</span><span class="dt-t">05:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">E組次名</span></div>
+    <div class="mn">賽事 78</div>
+    <div class="team t-away"><span class="tn">I組次名</span></div>
+  </div>
+  <div class="venue">阿靈頓 AT&amp;T</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-01">
+  <div class="dt"><span class="dt-d">7月1日(三)</span><span class="dt-t">09:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">I組首名</span></div>
+    <div class="mn">賽事 77</div>
+    <div class="team t-away"><span class="tn">C/D/F/G/H組第三位</span></div>
+  </div>
+  <div class="venue">東盧瑟福 大都會人壽</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-01">
+  <div class="dt"><span class="dt-d">7月1日(三)</span><span class="dt-t">13:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">A組首名</span></div>
+    <div class="mn">賽事 79</div>
+    <div class="team t-away"><span class="tn">C/E/F/H/I組第三位</span></div>
+  </div>
+  <div class="venue">墨西哥城 阿茲特克</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-02">
+  <div class="dt"><span class="dt-d">7月2日(四)</span><span class="dt-t">04:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">L組首名</span></div>
+    <div class="mn">賽事 80</div>
+    <div class="team t-away"><span class="tn">E/H/I/J/K組第三位</span></div>
+  </div>
+  <div class="venue">亞特蘭大 奔馳體育場</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-02">
+  <div class="dt"><span class="dt-d">7月2日(四)</span><span class="dt-t">08:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">G組首名</span></div>
+    <div class="mn">賽事 82</div>
+    <div class="team t-away"><span class="tn">A/E/H/I/J組第三位</span></div>
+  </div>
+  <div class="venue">西雅圖 流明球場</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-02">
+  <div class="dt"><span class="dt-d">7月2日(四)</span><span class="dt-t">12:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">D組首名</span></div>
+    <div class="mn">賽事 81</div>
+    <div class="team t-away"><span class="tn">B/E/F/I/J組第三位</span></div>
+  </div>
+  <div class="venue">聖克拉拉 李維斯</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-03">
+  <div class="dt"><span class="dt-d">7月3日(五)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">H組首名</span></div>
+    <div class="mn">賽事 84</div>
+    <div class="team t-away"><span class="tn">J組次名</span></div>
+  </div>
+  <div class="venue">英格爾伍德 SoFi</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-03">
+  <div class="dt"><span class="dt-d">7月3日(五)</span><span class="dt-t">11:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">K組次名</span></div>
+    <div class="mn">賽事 83</div>
+    <div class="team t-away"><span class="tn">L組次名</span></div>
+  </div>
+  <div class="venue">多倫多 BMO球場</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-03">
+  <div class="dt"><span class="dt-d">7月3日(五)</span><span class="dt-t">15:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">B組首名</span></div>
+    <div class="mn">賽事 85</div>
+    <div class="team t-away"><span class="tn">E/F/G/I/J組第三位</span></div>
+  </div>
+  <div class="venue">溫哥華 卑詩體育館</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-04">
+  <div class="dt"><span class="dt-d">7月4日(六)</span><span class="dt-t">06:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">D組次名</span></div>
+    <div class="mn">賽事 88</div>
+    <div class="team t-away"><span class="tn">G組次名</span></div>
+  </div>
+  <div class="venue">阿靈頓 AT&amp;T</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-04">
+  <div class="dt"><span class="dt-d">7月4日(六)</span><span class="dt-t">10:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">J組首名</span></div>
+    <div class="mn">賽事 86</div>
+    <div class="team t-away"><span class="tn">H組次名</span></div>
+  </div>
+  <div class="venue">邁阿密 硬石體育場</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-04">
+  <div class="dt"><span class="dt-d">7月4日(六)</span><span class="dt-t">13:30</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">K組首名</span></div>
+    <div class="mn">賽事 87</div>
+    <div class="team t-away"><span class="tn">D/E/I/J/L組第三位</span></div>
+  </div>
+  <div class="venue">堪薩斯城 箭頭體育場</div>
+</div>
+
+</div>
+</div><!-- /stage-section R32 -->
+
+<!-- ===== ROUND OF 16 ===== -->
+<div class="stage-section">
+<div class="stage">🥊 十六強 (Round of 16)</div>
+<div class="group-section">
+
+<div class="match match-ko" data-date="2026-07-05">
+  <div class="dt"><span class="dt-d">7月5日(日)</span><span class="dt-t">05:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">賽事73勝方</span></div>
+    <div class="mn">賽事 90</div>
+    <div class="team t-away"><span class="tn">賽事75勝方</span></div>
+  </div>
+  <div class="venue">侯斯頓 NRG</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-05">
+  <div class="dt"><span class="dt-d">7月5日(日)</span><span class="dt-t">09:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">賽事74勝方</span></div>
+    <div class="mn">賽事 89</div>
+    <div class="team t-away"><span class="tn">賽事77勝方</span></div>
+  </div>
+  <div class="venue">費城 林肯金融球場</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-06">
+  <div class="dt"><span class="dt-d">7月6日(一)</span><span class="dt-t">08:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">賽事76勝方</span></div>
+    <div class="mn">賽事 91</div>
+    <div class="team t-away"><span class="tn">賽事78勝方</span></div>
+  </div>
+  <div class="venue">東盧瑟福 大都會人壽</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-06">
+  <div class="dt"><span class="dt-d">7月6日(一)</span><span class="dt-t">12:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">賽事79勝方</span></div>
+    <div class="mn">賽事 92</div>
+    <div class="team t-away"><span class="tn">賽事80勝方</span></div>
+  </div>
+  <div class="venue">墨西哥城 阿茲特克</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-07">
+  <div class="dt"><span class="dt-d">7月7日(二)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">賽事83勝方</span></div>
+    <div class="mn">賽事 93</div>
+    <div class="team t-away"><span class="tn">賽事84勝方</span></div>
+  </div>
+  <div class="venue">阿靈頓 AT&amp;T</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-07">
+  <div class="dt"><span class="dt-d">7月7日(二)</span><span class="dt-t">12:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">賽事81勝方</span></div>
+    <div class="mn">賽事 94</div>
+    <div class="team t-away"><span class="tn">賽事82勝方</span></div>
+  </div>
+  <div class="venue">西雅圖 流明球場</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-08">
+  <div class="dt"><span class="dt-d">7月8日(三)</span><span class="dt-t">04:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">賽事86勝方</span></div>
+    <div class="mn">賽事 95</div>
+    <div class="team t-away"><span class="tn">賽事88勝方</span></div>
+  </div>
+  <div class="venue">亞特蘭大 奔馳體育場</div>
+</div>
+
+<div class="match match-ko" data-date="2026-07-08">
+  <div class="dt"><span class="dt-d">7月8日(三)</span><span class="dt-t">08:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">賽事85勝方</span></div>
+    <div class="mn">賽事 96</div>
+    <div class="team t-away"><span class="tn">賽事87勝方</span></div>
+  </div>
+  <div class="venue">溫哥華 卑詩體育館</div>
+</div>
+
+</div>
+</div><!-- /stage-section R16 -->
+
+<!-- ===== QUARTER-FINALS ===== -->
+<div class="stage-section">
+<div class="stage">🥊 半準決賽 (Quarter-finals)</div>
+<div class="group-section">
+
+<div class="match match-ko match-qf" data-date="2026-07-10">
+  <div class="dt"><span class="dt-d">7月10日(五)</span><span class="dt-t">08:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">賽事89勝方</span></div>
+    <div class="mn">賽事 97</div>
+    <div class="team t-away"><span class="tn">賽事90勝方</span></div>
+  </div>
+  <div class="venue">福克斯堡 吉列體育場</div>
+</div>
+
+<div class="match match-ko match-qf" data-date="2026-07-11">
+  <div class="dt"><span class="dt-d">7月11日(六)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">賽事93勝方</span></div>
+    <div class="mn">賽事 98</div>
+    <div class="team t-away"><span class="tn">賽事94勝方</span></div>
+  </div>
+  <div class="venue">英格爾伍德 SoFi</div>
+</div>
+
+<div class="match match-ko match-qf" data-date="2026-07-12">
+  <div class="dt"><span class="dt-d">7月12日(日)</span><span class="dt-t">09:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">賽事91勝方</span></div>
+    <div class="mn">賽事 99</div>
+    <div class="team t-away"><span class="tn">賽事92勝方</span></div>
+  </div>
+  <div class="venue">邁阿密 硬石體育場</div>
+</div>
+
+<div class="match match-ko match-qf" data-date="2026-07-12">
+  <div class="dt"><span class="dt-d">7月12日(日)</span><span class="dt-t">13:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">賽事95勝方</span></div>
+    <div class="mn">賽事 100</div>
+    <div class="team t-away"><span class="tn">賽事96勝方</span></div>
+  </div>
+  <div class="venue">堪薩斯城 箭頭體育場</div>
+</div>
+
+</div>
+</div><!-- /stage-section QF -->
+
+<!-- ===== SEMI-FINALS ===== -->
+<div class="stage-section">
+<div class="stage">🥊 準決賽 (Semi-finals)</div>
+<div class="group-section">
+
+<div class="match match-ko match-sf" data-date="2026-07-15">
+  <div class="dt"><span class="dt-d">7月15日(三)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">賽事97勝方</span></div>
+    <div class="mn">賽事 101</div>
+    <div class="team t-away"><span class="tn">賽事98勝方</span></div>
+  </div>
+  <div class="venue">阿靈頓 AT&amp;T</div>
+</div>
+
+<div class="match match-ko match-sf" data-date="2026-07-16">
+  <div class="dt"><span class="dt-d">7月16日(四)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">賽事99勝方</span></div>
+    <div class="mn">賽事 102</div>
+    <div class="team t-away"><span class="tn">賽事100勝方</span></div>
+  </div>
+  <div class="venue">亞特蘭大 奔馳體育場</div>
+</div>
+
+</div>
+</div><!-- /stage-section SF -->
+
+<!-- ===== THIRD PLACE ===== -->
+<div class="stage-section">
+<div class="stage">🥉 季軍戰 (Third Place)</div>
+<div class="group-section">
+
+<div class="match match-ko match-sf" data-date="2026-07-19">
+  <div class="dt"><span class="dt-d">7月19日(日)</span><span class="dt-t">09:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">賽事101負方</span></div>
+    <div class="mn">賽事 103</div>
+    <div class="team t-away"><span class="tn">賽事102負方</span></div>
+  </div>
+  <div class="venue">邁阿密 硬石體育場</div>
+</div>
+
+</div>
+</div><!-- /stage-section 3P -->
+
+<!-- ===== FINAL ===== -->
+<div class="stage-section">
+<div class="stage">🏆 決賽 (Final)</div>
+<div class="group-section">
+
+<div class="match match-ko match-final" data-date="2026-07-20">
+  <div class="dt"><span class="dt-d">7月20日(一)</span><span class="dt-t">07:00</span></div>
+  <div class="teams">
+    <div class="team t-home"><span class="tn">賽事101勝方</span></div>
+    <div class="mn">賽事 104</div>
+    <div class="team t-away"><span class="tn">賽事102勝方</span></div>
+  </div>
+  <div class="venue">東盧瑟福 大都會人壽</div>
+</div>
+
+</div>
+</div><!-- /stage-section Final -->
+
+<p style="text-align:center;color:#374151;font-size:.72em;margin-top:28px;padding-bottom:20px">
+  NZST = UTC+12　·　2026年6月11日 – 7月19日
+</p>
+
+<script>
+// 在每場比賽時間欄加入台灣時間（NZST UTC+12 → CST UTC+8，差 -4 小時）
+(function() {
+  var days = ['日','一','二','三','四','五','六'];
+  // 月份對應天數（2026非閏年）
+  var monthDays = [0,31,28,31,30,31,30,31,31,30,31,30,31];
+
+  function prevDay(dateStr) {
+    // dateStr format: "2026-06-12"
+    var p = dateStr.split('-');
+    var y = parseInt(p[0]), mo = parseInt(p[1]), d = parseInt(p[2]);
+    d--;
+    if (d < 1) { mo--; if (mo < 1) { mo = 12; y--; } d = monthDays[mo]; }
+    var dt = new Date(y, mo - 1, d);
+    return { mo: mo, d: d, wd: days[dt.getDay()] };
+  }
+
+  document.querySelectorAll('.match').forEach(function(m) {
+    var dtD = m.querySelector('.dt-d');
+    var dtT = m.querySelector('.dt-t');
+    if (!dtD || !dtT) return;
+
+    var nzStr = dtT.textContent.trim();          // e.g. "07:00"
+    var nzH = parseInt(nzStr.split(':')[0]);
+    var nzMin = nzStr.split(':')[1];
+
+    var twH = nzH - 4;
+    var prevDayInfo = null;
+    if (twH < 0) {
+      twH += 24;
+      prevDayInfo = prevDay(m.dataset.date);
+    }
+
+    var twStr = String(twH).padStart(2, '0') + ':' + nzMin;
+
+    // 更新 NZ 時間標籤
+    dtT.innerHTML = '🇳🇿&nbsp;' + nzStr;
+
+    // 插入台灣時間
+    var twSpan = document.createElement('span');
+    twSpan.className = 'dt-tw';
+    if (prevDayInfo) {
+      twSpan.innerHTML = '🇹🇼&nbsp;' + twStr
+        + '<span style="font-size:.68em;color:#f87171;font-weight:400"> (' + prevDayInfo.mo + '月' + prevDayInfo.d + '日)</span>';
+    } else {
+      twSpan.innerHTML = '🇹🇼&nbsp;' + twStr;
+    }
+    dtD.parentNode.appendChild(twSpan);
+  });
+})();
+
+function fd(date, btn) {
+  document.querySelectorAll('.dbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  var matches = document.querySelectorAll('.match');
+
+  if (date === 'all') {
+    matches.forEach(function(m){ m.style.display='flex'; });
+    document.querySelectorAll('.group-section,.stage-section').forEach(function(el){ el.style.display=''; });
+    return;
+  }
+
+  matches.forEach(function(m){
+    m.style.display = (m.dataset.date === date) ? 'flex' : 'none';
+  });
+
+  document.querySelectorAll('.group-section').forEach(function(gs){
+    var has = Array.from(gs.querySelectorAll('.match')).some(function(m){ return m.style.display !== 'none'; });
+    gs.style.display = has ? '' : 'none';
+  });
+
+  document.querySelectorAll('.stage-section').forEach(function(ss){
+    var has = Array.from(ss.querySelectorAll('.match')).some(function(m){ return m.style.display !== 'none'; });
+    ss.style.display = has ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
