@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TAB NZ 世界盃 2026 賠率</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#111827;color:#e5e7eb;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh}
+header{background:#1f2937;border-bottom:2px solid #10b981;padding:16px 20px;position:sticky;top:0;z-index:10}
+.header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+h1{font-size:1.2rem;font-weight:700;color:#10b981}
+.updated{font-size:.78rem;color:#6b7280}
+.updated span{color:#f59e0b}
+.stats{max-width:1100px;margin:16px auto;padding:0 16px;display:flex;gap:12px;flex-wrap:wrap}
+.stat{background:#1f2937;border-radius:10px;padding:12px 18px;flex:1;min-width:140px;text-align:center}
+.stat-val{font-size:1.5rem;font-weight:700;color:#f59e0b}
+.stat-lbl{font-size:.72rem;color:#6b7280;margin-top:4px}
+.filters{max-width:1100px;margin:0 auto 12px;padding:0 16px;display:flex;gap:8px;flex-wrap:wrap}
+.fbtn{background:#374151;border:none;color:#9ca3af;border-radius:20px;padding:6px 14px;font-size:.8rem;cursor:pointer;transition:.15s}
+.fbtn.active,.fbtn:hover{background:#10b981;color:#fff}
+table{max-width:1100px;margin:0 auto;width:100%;border-collapse:collapse;padding:0 16px}
+.tbl-wrap{max-width:1100px;margin:0 auto;padding:0 16px 40px}
+th{background:#1f2937;color:#6b7280;font-size:.72rem;font-weight:600;text-transform:uppercase;padding:10px 12px;text-align:left;position:sticky;top:65px}
+th.num{text-align:center}
+tr.match-row{border-bottom:1px solid #1f2937;transition:.1s}
+tr.match-row:hover{background:#1f2937}
+tr.match-row.hidden{display:none}
+td{padding:11px 12px;font-size:.85rem;vertical-align:middle}
+.match-name{font-weight:600;color:#f3f4f6}
+.match-sub{font-size:.72rem;color:#6b7280;margin-top:2px}
+.time-nz{color:#fbbf24;font-size:.82rem}
+.time-tw{color:#60a5fa;font-size:.78rem;margin-top:2px}
+.odds-cell{text-align:center;font-weight:700;font-size:.95rem;border-radius:6px;padding:8px 6px}
+.odds-fav{color:#10b981}
+.odds-mid{color:#e5e7eb}
+.odds-dog{color:#f87171}
+.bet-link{display:inline-block;background:#10b981;color:#fff;border-radius:6px;padding:4px 10px;font-size:.75rem;text-decoration:none;white-space:nowrap}
+.bet-link:hover{background:#059669}
+.no-odds{color:#4b5563;font-size:.78rem;text-align:center}
+.date-label{background:#374151;color:#9ca3af;font-size:.7rem;padding:6px 12px;font-weight:600;letter-spacing:.05em}
+@media(max-width:640px){
+  .venue-col,.market-col{display:none}
+  td,th{padding:8px 6px}
+  .odds-cell{padding:6px 4px;font-size:.85rem}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <h1>⚽ TAB NZ 世界盃 2026 賠率</h1>
+    <div class="updated">最後更新：<span>2026-05-13 17:25 NZST</span></div>
+  </div>
+</header>
+
+<div class="stats" id="stats"></div>
+
+<div class="filters" id="filters"></div>
+
+<div class="tbl-wrap">
+<table id="odds-table">
+  <thead>
+    <tr>
+      <th>比賽</th>
+      <th>🇳🇿 NZ 時間</th>
+      <th>🇹🇼 TW 時間</th>
+      <th class="num">主隊</th>
+      <th class="num">平局</th>
+      <th class="num">客隊</th>
+      <th class="market-col num">市場數</th>
+      <th>投注</th>
+    </tr>
+  </thead>
+  <tbody id="tbody"></tbody>
+</table>
+</div>
+
+<script>
+const DATA = [{"name": "Mexico vs South Africa", "home": "Mexico", "away": "South Africa", "utc": "2026-06-11T19:00:00.000Z", "nz_time": "2026-06-12 07:00", "tw_time": "2026-06-12 03:00", "home_odds": 1.52, "draw_odds": 4.1, "away_odds": 5.8, "market_count": 139, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/mexico-vs-south-africa/bf711e58-04cc-4d20-b33d-7f1d8a0a121a"}, {"name": "Korea Republic vs Czech Republic", "home": "Korea Republic", "away": "Czech Republic", "utc": "2026-06-12T02:00:00.000Z", "nz_time": "2026-06-12 14:00", "tw_time": "2026-06-12 10:00", "home_odds": 2.6, "draw_odds": 3.1, "away_odds": 2.75, "market_count": 139, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/korea-republic-vs-czech-republic/d5c37a16-5ea7-4c1a-87bd-52ea510e346e"}, {"name": "Canada vs Bosnia & Herzegovina", "home": "Canada", "away": "Bosnia & Herzegovina", "utc": "2026-06-12T19:00:00.000Z", "nz_time": "2026-06-13 07:00", "tw_time": "2026-06-13 03:00", "home_odds": 1.82, "draw_odds": 3.45, "away_odds": 4.25, "market_count": 139, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/canada-vs-bosnia-herzegovina/dde9dbd1-ddbf-4005-b8cc-f0b94a52e032"}, {"name": "USA vs Paraguay", "home": "USA", "away": "Paraguay", "utc": "2026-06-13T01:00:00.000Z", "nz_time": "2026-06-13 13:00", "tw_time": "2026-06-13 09:00", "home_odds": 1.98, "draw_odds": 3.45, "away_odds": 3.6, "market_count": 139, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/usa-vs-paraguay/1ef05b8f-cc89-4ec0-9f5e-07cfa5f22003"}, {"name": "Qatar vs Switzerland", "home": "Qatar", "away": "Switzerland", "utc": "2026-06-13T19:00:00.000Z", "nz_time": "2026-06-14 07:00", "tw_time": "2026-06-14 03:00", "home_odds": 8.75, "draw_odds": 5.6, "away_odds": 1.28, "market_count": 139, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/qatar-vs-switzerland/49e5cb93-db6f-45dd-9aed-9e157616681c"}, {"name": "Brazil vs Morocco", "home": "Brazil", "away": "Morocco", "utc": "2026-06-13T22:00:00.000Z", "nz_time": "2026-06-14 10:00", "tw_time": "2026-06-14 06:00", "home_odds": 1.58, "draw_odds": 3.9, "away_odds": 5.4, "market_count": 140, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/brazil-vs-morocco/fe965921-2956-42f3-ace5-9e5d0d074ca7"}, {"name": "Haiti vs Scotland", "home": "Haiti", "away": "Scotland", "utc": "2026-06-14T01:00:00.000Z", "nz_time": "2026-06-14 13:00", "tw_time": "2026-06-14 09:00", "home_odds": 7.0, "draw_odds": 4.75, "away_odds": 1.4, "market_count": 139, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/haiti-vs-scotland/19797204-988c-4007-bb92-18bea1504387"}, {"name": "Australia vs Turkey", "home": "Australia", "away": "Turkey", "utc": "2026-06-14T04:00:00.000Z", "nz_time": "2026-06-14 16:00", "tw_time": "2026-06-14 12:00", "home_odds": 4.4, "draw_odds": 3.45, "away_odds": 1.82, "market_count": 140, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/australia-vs-turkey/b21edf77-be0e-4b22-a493-45e4922fe9f0"}, {"name": "Germany vs Curacao", "home": "Germany", "away": "Curacao", "utc": "2026-06-14T17:00:00.000Z", "nz_time": "2026-06-15 05:00", "tw_time": "2026-06-15 01:00", "home_odds": 1.05, "draw_odds": 11.5, "away_odds": 31.0, "market_count": 55, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/germany-vs-curacao/7518fe70-49a7-4eb0-a702-3d3701d15153"}, {"name": "Netherlands vs Japan", "home": "Netherlands", "away": "Japan", "utc": "2026-06-14T20:00:00.000Z", "nz_time": "2026-06-15 08:00", "tw_time": "2026-06-15 04:00", "home_odds": 2.0, "draw_odds": 3.6, "away_odds": 3.45, "market_count": 139, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/netherlands-vs-japan/a72891f4-b18b-43a9-a63c-9c3dc29ec003"}, {"name": "Ivory Coast vs Ecuador", "home": "Ivory Coast", "away": "Ecuador", "utc": "2026-06-14T23:00:00.000Z", "nz_time": "2026-06-15 11:00", "tw_time": "2026-06-15 07:00", "home_odds": 3.2, "draw_odds": 3.1, "away_odds": 2.3, "market_count": 139, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/ivory-coast-vs-ecuador/7084d067-1bad-4490-a0ae-023a732140be"}, {"name": "Sweden vs Tunisia", "home": "Sweden", "away": "Tunisia", "utc": "2026-06-15T02:00:00.000Z", "nz_time": "2026-06-15 14:00", "tw_time": "2026-06-15 10:00", "home_odds": 1.9, "draw_odds": 3.3, "away_odds": 4.2, "market_count": 139, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/sweden-vs-tunisia/12affb6d-8ff4-49d6-a4e9-7e4937bece4f"}, {"name": "Spain vs Cape Verde", "home": "Spain", "away": "Cape Verde", "utc": "2026-06-15T16:00:00.000Z", "nz_time": "2026-06-16 04:00", "tw_time": "2026-06-16 00:00", "home_odds": 1.09, "draw_odds": 9.25, "away_odds": 21.0, "market_count": 55, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/spain-vs-cape-verde/5f5b854e-e4a6-4f8c-ab31-c10be789cfc0"}, {"name": "Belgium vs Egypt", "home": "Belgium", "away": "Egypt", "utc": "2026-06-15T19:00:00.000Z", "nz_time": "2026-06-16 07:00", "tw_time": "2026-06-16 03:00", "home_odds": 1.65, "draw_odds": 4.0, "away_odds": 4.6, "market_count": 140, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/belgium-vs-egypt/a43eb9aa-940d-4cc2-9b07-ce5be83abb23"}, {"name": "Saudi Arabia vs Uruguay", "home": "Saudi Arabia", "away": "Uruguay", "utc": "2026-06-15T22:00:00.000Z", "nz_time": "2026-06-16 10:00", "tw_time": "2026-06-16 06:00", "home_odds": 6.4, "draw_odds": 3.9, "away_odds": 1.52, "market_count": 139, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/saudi-arabia-vs-uruguay/72a48812-9c80-4fdb-8ada-e9d47acb23bc"}, {"name": "Iran vs New Zealand", "home": "Iran", "away": "New Zealand", "utc": "2026-06-16T01:00:00.000Z", "nz_time": "2026-06-16 13:00", "tw_time": "2026-06-16 09:00", "home_odds": 1.75, "draw_odds": 3.5, "away_odds": 4.75, "market_count": 139, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/iran-vs-new-zealand/bf45daaa-7301-415d-956f-24dbbbfceb7b"}, {"name": "France vs Senegal", "home": "France", "away": "Senegal", "utc": "2026-06-16T19:00:00.000Z", "nz_time": "2026-06-17 07:00", "tw_time": "2026-06-17 03:00", "home_odds": 1.44, "draw_odds": 4.4, "away_odds": 6.5, "market_count": 140, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/france-vs-senegal/2e4b0733-fd55-4e66-a22f-08f76ff74494"}, {"name": "Iraq vs Norway", "home": "Iraq", "away": "Norway", "utc": "2026-06-16T22:00:00.000Z", "nz_time": "2026-06-17 10:00", "tw_time": "2026-06-17 06:00", "home_odds": 8.75, "draw_odds": 5.0, "away_odds": 1.32, "market_count": 139, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/iraq-vs-norway/202ea7f1-8183-43a5-9acd-50db3cc9ad57"}, {"name": "Argentina vs Algeria", "home": "Argentina", "away": "Algeria", "utc": "2026-06-17T01:00:00.000Z", "nz_time": "2026-06-17 13:00", "tw_time": "2026-06-17 09:00", "home_odds": 1.4, "draw_odds": 4.5, "away_odds": 7.5, "market_count": 139, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/argentina-vs-algeria/af594d29-1e20-4872-97fd-2c147005b834"}, {"name": "Austria vs Jordan", "home": "Austria", "away": "Jordan", "utc": "2026-06-17T04:00:00.000Z", "nz_time": "2026-06-17 16:00", "tw_time": "2026-06-17 12:00", "home_odds": 1.35, "draw_odds": 5.2, "away_odds": 7.75, "market_count": 139, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/austria-vs-jordan/4ddabecd-011c-4795-bf9a-e4edf16a2074"}, {"name": "Portugal vs DR Congo", "home": "Portugal", "away": "DR Congo", "utc": "2026-06-17T17:00:00.000Z", "nz_time": "2026-06-18 05:00", "tw_time": "2026-06-18 01:00", "home_odds": 1.32, "draw_odds": 4.6, "away_odds": 10.5, "market_count": 138, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/portugal-vs-dr-congo/7feba212-2a18-478e-915b-4b81c0111f35"}, {"name": "England vs Croatia", "home": "England", "away": "Croatia", "utc": "2026-06-17T20:00:00.000Z", "nz_time": "2026-06-18 08:00", "tw_time": "2026-06-18 04:00", "home_odds": 1.7, "draw_odds": 3.75, "away_odds": 4.75, "market_count": 139, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/england-vs-croatia/44f5aac9-83c9-46e4-9226-3fbe9a37c9a9"}, {"name": "Ghana vs Panama", "home": "Ghana", "away": "Panama", "utc": "2026-06-17T23:00:00.000Z", "nz_time": "2026-06-18 11:00", "tw_time": "2026-06-18 07:00", "home_odds": 2.0, "draw_odds": 3.4, "away_odds": 3.7, "market_count": 139, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/ghana-vs-panama/9f617f1e-0c96-4be2-931f-13daf022fd4a"}, {"name": "Uzbekistan vs Colombia", "home": "Uzbekistan", "away": "Colombia", "utc": "2026-06-18T02:00:00.000Z", "nz_time": "2026-06-18 14:00", "tw_time": "2026-06-18 10:00", "home_odds": 6.75, "draw_odds": 4.5, "away_odds": 1.42, "market_count": 139, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/uzbekistan-vs-colombia/d8a1a801-88a0-4c83-8cfb-96f946602dc6"}, {"name": "USA vs Australia", "home": "USA", "away": "Australia", "utc": "2026-06-19T19:00:00.000Z", "nz_time": "2026-06-20 07:00", "tw_time": "2026-06-20 03:00", "home_odds": 1.53, "draw_odds": 4.1, "away_odds": 6.0, "market_count": 1, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/usa-vs-australia/fc763fd9-b5e7-4421-9b77-7e604111766d"}, {"name": "Paraguay vs Australia", "home": "Paraguay", "away": "Australia", "utc": "2026-06-26T02:00:00.000Z", "nz_time": "2026-06-26 14:00", "tw_time": "2026-06-26 10:00", "home_odds": 1.82, "draw_odds": 3.7, "away_odds": 4.0, "market_count": 1, "url": "https://www.tab.co.nz/sports/soccer/world-cup/world-cup-2026/paraguay-vs-australia/baf549f6-8c2b-4659-9a1b-01eb30585701"}];
+
+function oddsClass(v, home, draw, away) {
+  const mn = Math.min(...[home,draw,away].filter(x=>x));
+  const mx = Math.max(...[home,draw,away].filter(x=>x));
+  if (v === mn) return 'odds-fav';
+  if (v === mx) return 'odds-dog';
+  return 'odds-mid';
+}
+
+function fmtDate(nz) { return nz.slice(5,10).replace('-','/'); }
+function fmtDateLabel(nz) {
+  const [y,m,d] = nz.split(' ')[0].split('-');
+  const days = ['日','一','二','三','四','五','六'];
+  const dt = new Date(+y, +m-1, +d);
+  return `${m}/${d} (週${days[dt.getDay()]})`;
+}
+
+// Stats
+const totalMatches = DATA.length;
+const allOdds = DATA.flatMap(m => [m.home_odds, m.draw_odds, m.away_odds]).filter(x=>x);
+const maxOdds = Math.max(...allOdds);
+const minOdds = Math.min(...allOdds);
+const maxMatch = DATA.find(m => [m.home_odds,m.away_odds].includes(maxOdds));
+const minMatch = DATA.find(m => [m.home_odds,m.away_odds].includes(minOdds));
+const maxTeam = maxMatch ? (maxMatch.home_odds===maxOdds ? maxMatch.home : maxMatch.away) : '';
+const minTeam = minMatch ? (minMatch.home_odds===minOdds ? minMatch.home : minMatch.away) : '';
+
+document.getElementById('stats').innerHTML = `
+  <div class="stat"><div class="stat-val">${totalMatches}</div><div class="stat-lbl">已開放賠率場數</div></div>
+  <div class="stat"><div class="stat-val" style="color:#10b981">${minOdds.toFixed(2)}</div><div class="stat-lbl">最熱門 ${minTeam}</div></div>
+  <div class="stat"><div class="stat-val" style="color:#f87171">${maxOdds.toFixed(2)}</div><div class="stat-lbl">最大冷門 ${maxTeam}</div></div>
+`;
+
+// Date filter buttons
+const dates = [...new Set(DATA.map(m => m.nz_time.slice(0,10)))].sort();
+let activeDate = 'all';
+
+function renderFilters() {
+  const f = document.getElementById('filters');
+  f.innerHTML = ['all',...dates].map(d => {
+    const lbl = d==='all' ? '全部' : fmtDateLabel(d+' 00:00');
+    return `<button class="fbtn${d===activeDate?' active':''}" onclick="setDate('${d}')">${lbl}</button>`;
+  }).join('');
+}
+
+function setDate(d) {
+  activeDate = d;
+  renderFilters();
+  document.querySelectorAll('tr.match-row').forEach(tr => {
+    tr.classList.toggle('hidden', d!=='all' && tr.dataset.date!==d);
+  });
+  document.querySelectorAll('tr.date-label').forEach(tr => {
+    const next = tr.nextElementSibling;
+    const hasVisible = [...document.querySelectorAll(`tr.match-row[data-date="${tr.dataset.date}"]`)]
+      .some(r => !r.classList.contains('hidden'));
+    tr.classList.toggle('hidden', !hasVisible);
+  });
+}
+
+// Render table
+const tbody = document.getElementById('tbody');
+let lastDate = '';
+DATA.forEach(m => {
+  const dateKey = m.nz_time.slice(0,10);
+  if (dateKey !== lastDate) {
+    lastDate = dateKey;
+    const sep = document.createElement('tr');
+    sep.className = 'date-label';
+    sep.dataset.date = dateKey;
+    sep.innerHTML = `<td colspan="8">📅 ${fmtDateLabel(m.nz_time)} — NZ</td>`;
+    tbody.appendChild(sep);
+  }
+
+  const tr = document.createElement('tr');
+  tr.className = 'match-row';
+  tr.dataset.date = dateKey;
+
+  const ho = m.home_odds, dr = m.draw_odds, aw = m.away_odds;
+  const hc = ho ? oddsClass(ho,ho,dr,aw) : '';
+  const dc = dr ? oddsClass(dr,ho,dr,aw) : '';
+  const ac = aw ? oddsClass(aw,ho,dr,aw) : '';
+
+  const nzDate = m.nz_time.slice(5,10).replace('-','/');
+  const nzTime = m.nz_time.slice(11,16);
+  const twDate = m.tw_time.slice(5,10).replace('-','/');
+  const twTime = m.tw_time.slice(11,16);
+
+  tr.innerHTML = `
+    <td>
+      <div class="match-name">${m.home} <span style="color:#4b5563">vs</span> ${m.away}</div>
+    </td>
+    <td><div class="time-nz">🇳🇿 ${nzDate} ${nzTime}</div></td>
+    <td><div class="time-tw">🇹🇼 ${twDate} ${twTime}</div></td>
+    <td class="odds-cell ${hc}">${ho ? ho.toFixed(2) : '<span class="no-odds">—</span>'}</td>
+    <td class="odds-cell ${dc}">${dr ? dr.toFixed(2) : '<span class="no-odds">—</span>'}</td>
+    <td class="odds-cell ${ac}">${aw ? aw.toFixed(2) : '<span class="no-odds">—</span>'}</td>
+    <td class="market-col" style="text-align:center;color:#6b7280;font-size:.78rem">${m.market_count}</td>
+    <td><a class="bet-link" href="${m.url}" target="_blank">TAB ↗</a></td>
+  `;
+  tbody.appendChild(tr);
+});
+
+renderFilters();
+</script>
+</body>
+</html>
