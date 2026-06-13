@@ -1391,6 +1391,14 @@ body.lang-en .tn .en{font-size:1em;color:inherit;font-weight:500}
 var _activeDate = 'all';
 var _activeTeam = 'all';
 
+// 今天日期（YYYY-MM-DD，本地時間），用於隱藏已過去的比賽
+var _todayStr = (function() {
+  var d = new Date();
+  return d.getFullYear() + '-' +
+         String(d.getMonth() + 1).padStart(2, '0') + '-' +
+         String(d.getDate()).padStart(2, '0');
+})();
+
 // ── 頁面載入時一次性快取，避免每次篩選重複 querySelectorAll ──
 var _allMatches        = Array.from(document.querySelectorAll('.match'));
 var _allGroupSections  = Array.from(document.querySelectorAll('.group-section'));
@@ -1424,7 +1432,8 @@ function _applyFilters() {
   _allMatches.forEach(function(m) {
     var okDate = (_activeDate === 'all') || (m.dataset.date === _activeDate);
     var okTeam = !teamSet || teamSet.has(m);
-    m.style.display = (okDate && okTeam) ? 'flex' : 'none';
+    var okNotPast = m.dataset.date >= _todayStr;
+    m.style.display = (okDate && okTeam && okNotPast) ? 'flex' : 'none';
   });
 
   _allGroupSections.forEach(function(gs) {
@@ -1477,7 +1486,7 @@ function selectStage(btn) {
     return;
   }
 
-  var dates = _stageDates[stage];
+  var dates = _stageDates[stage].filter(function(d) { return d[0] >= _todayStr; });
   var html = '<button class="dbtn active" onclick="fd(\'all\',this)"><span data-en="All">全部</span></button>';
   dates.forEach(function(d) {
     html += '<button class="dbtn" onclick="fd(\'' + d[0] + '\',this)"><span>' + d[1] + '</span><small data-en="' + _wdEn[d[2]] + '">' + d[2] + '</small></button>';
