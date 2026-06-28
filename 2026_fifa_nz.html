@@ -183,7 +183,7 @@ body.lang-en .tn .en{font-size:1em;color:inherit;font-weight:500}
 </div>
 
 <!-- ===== GROUP STAGE ===== -->
-<div class="stage-section">
+<div class="stage-section" data-stage="group">
 <div class="stage" data-en="⚽ Group Stage">⚽ 小組賽</div>
 
 <!-- GROUP A -->
@@ -968,7 +968,7 @@ body.lang-en .tn .en{font-size:1em;color:inherit;font-weight:500}
 </div><!-- /stage-section group -->
 
 <!-- ===== ROUND OF 32 ===== -->
-<div class="stage-section">
+<div class="stage-section" data-stage="r32">
 <div class="stage" data-en="🥊 Round of 32">🥊 三十二強 (Round of 32)</div>
 <div class="group-section">
 
@@ -1136,7 +1136,7 @@ body.lang-en .tn .en{font-size:1em;color:inherit;font-weight:500}
 </div><!-- /stage-section R32 -->
 
 <!-- ===== ROUND OF 16 ===== -->
-<div class="stage-section">
+<div class="stage-section" data-stage="r16">
 <div class="stage" data-en="🥊 Round of 16">🥊 十六強 (Round of 16)</div>
 <div class="group-section">
 
@@ -1224,7 +1224,7 @@ body.lang-en .tn .en{font-size:1em;color:inherit;font-weight:500}
 </div><!-- /stage-section R16 -->
 
 <!-- ===== QUARTER-FINALS ===== -->
-<div class="stage-section">
+<div class="stage-section" data-stage="qf">
 <div class="stage" data-en="🥊 Quarter-finals">🥊 半準決賽 (Quarter-finals)</div>
 <div class="group-section">
 
@@ -1272,7 +1272,7 @@ body.lang-en .tn .en{font-size:1em;color:inherit;font-weight:500}
 </div><!-- /stage-section QF -->
 
 <!-- ===== SEMI-FINALS ===== -->
-<div class="stage-section">
+<div class="stage-section" data-stage="sf">
 <div class="stage" data-en="🥊 Semi-finals">🥊 準決賽 (Semi-finals)</div>
 <div class="group-section">
 
@@ -1300,7 +1300,7 @@ body.lang-en .tn .en{font-size:1em;color:inherit;font-weight:500}
 </div><!-- /stage-section SF -->
 
 <!-- ===== THIRD PLACE ===== -->
-<div class="stage-section">
+<div class="stage-section" data-stage="final">
 <div class="stage" data-en="🥉 Third Place Play-off">🥉 季軍戰 (Third Place)</div>
 <div class="group-section">
 
@@ -1318,7 +1318,7 @@ body.lang-en .tn .en{font-size:1em;color:inherit;font-weight:500}
 </div><!-- /stage-section 3P -->
 
 <!-- ===== FINAL ===== -->
-<div class="stage-section">
+<div class="stage-section" data-stage="final">
 <div class="stage" data-en="🏆 Final">🏆 決賽 (Final)</div>
 <div class="group-section">
 
@@ -1390,6 +1390,7 @@ body.lang-en .tn .en{font-size:1em;color:inherit;font-weight:500}
 // Active filter state
 var _activeDate = 'all';
 var _activeTeam = 'all';
+var _activeStage = 'all'; // 'all' 或 group/r32/r16/qf/sf/final
 
 // 今天日期（YYYY-MM-DD，本地時間），用於隱藏已過去的比賽
 var _todayStr = (function() {
@@ -1414,6 +1415,13 @@ _allStageSections.forEach(function(ss) {
   _stageMatchMap.set(ss, Array.from(ss.querySelectorAll('.match')));
 });
 
+// 每場 match → 所屬階段 key（group/r32/r16/qf/sf/final），供階段篩選 O(1) 查找
+var _matchStageMap = new Map();
+_allStageSections.forEach(function(ss) {
+  var st = ss.dataset.stage;
+  _stageMatchMap.get(ss).forEach(function(m) { _matchStageMap.set(m, st); });
+});
+
 // 隊名 → [matchEl] 索引，過濾時 O(1) 查找，不再逐場 DOM query
 var _teamIndex = {};
 _allMatches.forEach(function(m) {
@@ -1432,8 +1440,9 @@ function _applyFilters() {
   _allMatches.forEach(function(m) {
     var okDate = (_activeDate === 'all') || (m.dataset.date === _activeDate);
     var okTeam = !teamSet || teamSet.has(m);
+    var okStage = (_activeStage === 'all') || (_matchStageMap.get(m) === _activeStage);
     var okNotPast = m.dataset.date >= _todayStr;
-    m.style.display = (okDate && okTeam && okNotPast) ? 'flex' : 'none';
+    m.style.display = (okDate && okTeam && okStage && okNotPast) ? 'flex' : 'none';
   });
 
   _allGroupSections.forEach(function(gs) {
@@ -1481,6 +1490,7 @@ function selectStage(btn) {
   if (stage === 'all') {
     subRow.style.display = 'none';
     subRow.innerHTML = '';
+    _activeStage = 'all';
     _activeDate = 'all';
     _applyFilters();
     return;
@@ -1493,6 +1503,7 @@ function selectStage(btn) {
   });
   subRow.innerHTML = html;
   subRow.style.display = 'flex';
+  _activeStage = stage;
   _activeDate = 'all';
   _applyFilters();
   _applyLang(); // 新生成的日期按鈕套用目前語言
