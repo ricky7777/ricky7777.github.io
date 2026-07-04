@@ -1434,6 +1434,19 @@ _allMatches.forEach(function(m) {
   });
 });
 
+// 隱藏「到今天為止已無賽事」的階段 tab（例：小組賽已全部結束就不顯示該 tab）
+(function _hideFinishedStageTabs() {
+  var futureStages = new Set();
+  _allMatches.forEach(function(m) {
+    if (m.dataset.date >= _todayStr) futureStages.add(_matchStageMap.get(m));
+  });
+  document.querySelectorAll('.stab').forEach(function(b) {
+    var st = b.dataset.stage;
+    if (st === 'all') return; // 「全部」永遠顯示
+    if (!futureStages.has(st)) b.style.display = 'none';
+  });
+})();
+
 function _applyFilters() {
   var teamSet = _activeTeam !== 'all' ? new Set(_teamIndex[_activeTeam] || []) : null;
 
