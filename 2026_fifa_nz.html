@@ -49,6 +49,11 @@ h1{text-align:center;color:#FFD700;font-size:1.8em;margin-bottom:6px;padding-top
 .match-sf{border-color:#f97316!important;background:#1a0f00}
 .match-qf{border-color:#a78bfa!important;background:#130f1a}
 
+/* 已完賽比分（.mn 會被 i18n 覆寫 textContent，比分須為獨立元素） */
+.mid{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0}
+.sc{font-size:1.05em;font-weight:800;color:#FFD700;letter-spacing:1.5px;line-height:1.1}
+.team.win .tn{color:#FFD700;font-weight:700}
+
 @media(max-width:680px){.venue{display:none}.match{flex-wrap:wrap}.team{min-width:100px}h1{padding-top:46px;font-size:1.5em}}
 
 /* ── Filter panel ── */
@@ -1280,8 +1285,8 @@ body.lang-en .tn .en{font-size:1em;color:inherit;font-weight:500}
   <div class="dt"><span class="dt-d">7月15日(三)</span><span class="dt-t">07:00</span></div>
   <div class="teams">
     <div class="team t-home"><span class="tn">法國<em class="en">France</em></span><span class="fl">🇫🇷</span></div>
-    <div class="mn">賽事 101</div>
-    <div class="team t-away"><span class="fl">🇪🇸</span><span class="tn">西班牙<em class="en">Spain</em></span></div>
+    <div class="mid"><span class="sc">0 - 2</span><span class="mn">賽事 101</span></div>
+    <div class="team t-away win"><span class="fl">🇪🇸</span><span class="tn">西班牙<em class="en">Spain</em></span></div>
   </div>
   <div class="venue">阿靈頓 AT&amp;T</div>
 </div>
@@ -1290,8 +1295,8 @@ body.lang-en .tn .en{font-size:1em;color:inherit;font-weight:500}
   <div class="dt"><span class="dt-d">7月16日(四)</span><span class="dt-t">07:00</span></div>
   <div class="teams">
     <div class="team t-home"><span class="tn">英格蘭<em class="en">England</em></span><span class="fl">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span></div>
-    <div class="mn">賽事 102</div>
-    <div class="team t-away"><span class="fl">🇦🇷</span><span class="tn">阿根廷<em class="en">Argentina</em></span></div>
+    <div class="mid"><span class="sc">1 - 2</span><span class="mn">賽事 102</span></div>
+    <div class="team t-away win"><span class="fl">🇦🇷</span><span class="tn">阿根廷<em class="en">Argentina</em></span></div>
   </div>
   <div class="venue">亞特蘭大 奔馳體育場</div>
 </div>
@@ -1307,9 +1312,9 @@ body.lang-en .tn .en{font-size:1em;color:inherit;font-weight:500}
 <div class="match match-ko match-sf" data-date="2026-07-19">
   <div class="dt"><span class="dt-d">7月19日(日)</span><span class="dt-t">09:00</span></div>
   <div class="teams">
-    <div class="team t-home"><span class="tn">賽事101負方</span></div>
+    <div class="team t-home"><span class="tn">法國<em class="en">France</em></span><span class="fl">🇫🇷</span></div>
     <div class="mn">賽事 103</div>
-    <div class="team t-away"><span class="tn">賽事102負方</span></div>
+    <div class="team t-away"><span class="fl">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="tn">英格蘭<em class="en">England</em></span></div>
   </div>
   <div class="venue">邁阿密 硬石體育場</div>
 </div>
@@ -1325,9 +1330,9 @@ body.lang-en .tn .en{font-size:1em;color:inherit;font-weight:500}
 <div class="match match-ko match-final" data-date="2026-07-20">
   <div class="dt"><span class="dt-d">7月20日(一)</span><span class="dt-t">07:00</span></div>
   <div class="teams">
-    <div class="team t-home"><span class="tn">賽事101勝方</span></div>
+    <div class="team t-home"><span class="tn">西班牙<em class="en">Spain</em></span><span class="fl">🇪🇸</span></div>
     <div class="mn">賽事 104</div>
-    <div class="team t-away"><span class="tn">賽事102勝方</span></div>
+    <div class="team t-away"><span class="fl">🇦🇷</span><span class="tn">阿根廷<em class="en">Argentina</em></span></div>
   </div>
   <div class="venue">東盧瑟福 大都會人壽</div>
 </div>
